@@ -1,16 +1,56 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!doctype html>
+<html>
   <head>
-    <meta charset="utf-8">
-    <title></title>
+    <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="FAND-QMRNlwz195SQGaRCzpAJHUqh3l3MO5mEO60g7I" />
+    <title> talk2x | Hello World </title>
+
+    <!--FAVICON-->
+      <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../static/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../static/favicon/favicon-16x16.png">
+        <link rel="manifest" href="../../static/favicon/site.webmanifest">
+        <link rel="mask-icon" href="../../static/favicon/safari-pinned-tab.svg" color="#57d084">
+        <link rel="shortcut icon" href="../../static/favicon/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="./favicon/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+    <!-- STYLING -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900">
+    <link rel="stylesheet" href="../../static/css/base.css">
+
+    <!-- JS -->
+    <script>
+    </script>
   </head>
   <body>
+    <!-- HEADER -->
+    <header>
+      <div class="headerCon">
+        <div id="branding">
+          <a href="../home.html"><img id="logo" src="../../static/img/logo.png" alt="logo"></a>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="communities.html">Communities</a></li>
+            <li class="current"><a href="browse.html">Talk</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Register</button>
-    </form>
+    <!-- LOGIN -->
+    <div class="login">
+      <h2>Sign Up</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+      </form>
+    </div>
+<p>Already a member? <a href="./login.html">Log in.</a></p>
+
 
   </body>
 </html>

@@ -1,1 +1,417 @@
-.
+/* green: #57D084
+dark blue: #1C7192
+lightblue: #54A1BF
+textgrey: #4A4A4A
+*/
+
+body{
+  font: 15px/1.5 montserrat;
+  padding: 0;
+  margin:0;
+  background-color: #white;}
+/* Global */
+.container{
+  width:80%;
+  margin: auto;
+  overflow: hidden;}
+
+
+  /* Buttons */
+
+.link-btn{
+  color:white;
+  font-size: 44px;
+  background: #57D084;
+  padding: 24px 40px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin: 20px 20px;
+  display: inline-block;
+    vertical-align: middle;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;}
+.link-btn:hover{-webkit-transform: scale(1.1);
+  transform: scale(1.1);}
+
+#createBtn .link-btn {font-size: 30px;}
+#createBtn{margin: 120px 0 5px 0 ;
+min-height:100px;
+text-align: center;}
+
+
+  /* footer */
+footer{padding: 20px;
+  margin-top: 20px;
+  color: white;
+  background-color:#4A4A4A;
+  text-align: center;}
+.footlinks a{text-decoration: none;color: white;}
+
+/* index.html */
+  /* Header */
+header{
+  background: rgba(255,255,255, 0.97);
+  padding-top: 10px;
+  min-height: 60px;
+  border-bottom: #57D084 3px solid;
+  position: fixed; top:0; width: 100%;
+  overflow: hidden;}
+
+.headerCon {
+  width:90%;
+  margin: auto;
+  overflow: hidden;}
+
+header a{
+  color: #4A4A4A;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;}
+
+header a:hover{
+  color: #1C7192;
+  font-weight: 400;}
+
+header ul{
+  margin: 0;
+  padding: 0;}
+
+header li{
+  float:left;
+  padding: 10px 10px 0 15px;
+  display: inline;}
+
+header #branding{
+  float:left;}
+
+header nav{
+  float:right;
+  margin-top:10px;}
+
+#logo{
+  height:50px;
+  margin-bottom:10px;}
+
+header .current a{
+  color: #57D084;
+  font-weight: bold;}
+
+  /* Statement */
+.stateCon {max-width: 620px; padding: 15% 0 10% 0;margin: auto; overflow: hidden;}
+
+#statement p{
+  color: #4A4A4A;
+  font-size: 48px;
+  line-height: 58px;
+  margin-top: 25%;
+  margin-bottom: 25%;
+  text-align: center;}
+
+  /* Boxes */
+.boxCon{max-width: 280px; margin: auto; overflow: hidden;}
+
+#Boxes{
+  margin-top: 20px;}
+
+#boxes .box{float:left;
+  text-align: center;
+  width: 30%;
+  padding: 10px;
+  margin-top: 20px;}
+
+#boxes .box img{
+  width: 90px;
+  height: auto;}
+
+#boxes .box p{
+  font-size: 24px;
+  color: #4A4A4A;
+  line-height: 29px;}
+
+
+  /* Lighttext */
+
+.textCon{max-width: 700px; padding: 10% 0 10% 0;margin: auto; overflow: hidden;}
+.communitiesCon{width: 80%; max-width: 700px; padding: 0 0 0 0;margin: auto; overflow: hidden;}
+
+#lighttext p{
+  color: #4A4A4A;
+  font-size: 36px;
+  font-weight: 200;
+  line-height: 44px;
+  margin-top: 25%;
+  margin-bottom: 25%;
+  text-align: center;}
+
+  #lighttext2 p{
+    color: #4A4A4A;
+    font-size: 36px;
+    font-weight: 200;
+    line-height: 44px;
+    margin-top: 150px;
+    margin-bottom: 25%;
+    text-align: left;}
+
+  /* tutorial */
+#tutorial p{
+  color: #4A4A4A;
+  font-size: 36px;
+  line-height: 55px;
+  text-align: left;
+  max-width: 500px;
+  font-weight: 200;
+  font-style: italic;
+  margin:auto;}
+
+.numberH{color: #4A4A4A;
+font-size: 36px;
+font-style: italic;
+line-height: 55px;
+font-weight: 600;
+margin-right: 10px;}
+
+  /* OUTRO */
+  .outroCon {max-width: 500px;
+    border: 3px solid #57D084;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin: auto;}
+
+  #outro{
+    margin: 20% 0 25% 0 ;
+    min-height:100px;
+    text-align: center;}
+
+
+#highlight{color: #57D084}
+
+  a:hover #highlight{
+    margin-top: 10px;
+    font-size: 48px;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    color: #57D084;
+    margin-bottom: 10px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+        transition-duration: 0.1s;}
+
+        #highlight2{color: #white}
+
+          hover #highlight2{
+            margin-top: 10px;
+            font-size: 48px;
+            font-style: italic;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            color: white;
+            margin-bottom: 10px;
+            -webkit-transition-duration: 0.1s; /* Safari */
+                transition-duration: 0.1s;}
+
+
+/* browse.html */
+
+/*BROWSE conversations*/
+
+
+/* NOTE: PAGETITLESTUFF*/
+.pagetitle{padding: 16px;
+font-weight: 200;
+color: #4A4A4A;
+background: white;}
+
+
+/*LOGIN*/
+
+.login{
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+    margin-top: 25%;
+}
+
+
+.listCon
+  {margin: auto;
+  max-width: 600px;}
+
+ul#browselist li{
+  list-style: none;
+  padding:10px;
+  margin-bottom: 5px;
+  background-color: white;}
+
+ul#browselist h3{
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2;
+  color: #4A4A4A;}
+ul#browselist a{text-decoration:none;}
+
+ul#browselist p{
+  font-size: 24px;
+  font-weight: 200;
+  letter-spacing: 1.2;
+  color: #4A4A4A;
+
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  }
+
+#blunch {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1.2;
+  color: #54A1BF;
+  text-decoration: none;}
+
+#btalk {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1.2;
+  color: #1C7192;}
+
+  #bnoone {
+    font-size: 18px;
+    font-style;
+    letter-spacing: 1.2;
+    ;}
+
+
+
+#browselist p:hover, #browselist p:focus, #browselist p:active {
+  -webkit-transform: translateX(8px);
+ transform: translateX(8px);
+}
+
+
+
+/* NOTE: imprint.html */
+.imCon{width:400px;
+  height: 400px;
+margin: auto;
+margin-top: 25%;
+margin-bottom: 25%;
+overflow: hidden;}
+
+.imCon p{ text-align: left;
+  color: #4A4A4A;
+padding: 20px 20px 20px 20px;
+margin: 20px 20px 20px 20px;}
+
+.imCon img{text-align: center;
+width: 100px;
+padding: 20px 20px 20px 20px;
+margin:20px 20px 20px 20px;
+}
+
+/* GOOGLE FORMS*/
+.googleCon{width:500px;
+margin: auto;
+overflow: hidden;
+text-align: center;}
+
+
+
+/* RESPONSIVENESS */
+
+/*Media Queries*/
+
+@media(max-width:768px){
+  header #branding,
+  header nav,
+  header nav li,
+  #boxes .box {
+    float: none;
+    text-align: center;
+    width: 100%;}
+  .pagetitle{margin-top: 10px;}
+header{padding-bottom: 20px;
+  }
+.stateCon{padding: 0;
+  padding-top: 100px;
+margin-left: 3px;
+margin-right: 3px;}
+.googleCon iframe{width:100%;
+margin: auto;
+overflow: hidden;
+text-align: center;
+margin-top: 25%;}
+.imCon{width:400px;
+  height: 400px;
+margin: auto;
+margin-top: 35%;
+margin-bottom: 25%;
+overflow: hidden;}
+#lighttext p {font-size: 30px; line-height: 37px;}
+#lighttext2 p {font-size: 30px; line-height: 37px;}
+#communitiesCon {width: 90%;}
+.numberH, #tutorial p {font-size: 30px; line-height: 44px}
+#statement p {font-size: 40px; line-height: 49px;}
+.link-btn{
+  font-size: 36px;
+  background: #57D084;
+  padding: 24px 40px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin: 20px 20px;}
+  #createBtn .link-btn {font-size: 28px;}
+  #createBtn{margin: 150px 0 5px 0 ;
+
+  text-align: center;}
+}
+
+
+@media(max-width:412px){
+  header #branding,
+  header nav,
+  header nav li,
+  #boxes .box {
+    float: none;
+    text-align: center;
+    width: 100%;}
+  .pagetitle{margin-top: 10px;}
+header{padding-bottom: 20px;
+  }
+.stateCon{padding: 0;
+  padding-top: 100px;
+margin-left: 3px;
+margin-right: 3px;}
+.googleCon iframe{width:100%;
+margin: auto;
+overflow: hidden;
+text-align: center;
+margin-top: 25%;}
+.imCon{width:400px;
+  height: 400px;
+margin: auto;
+margin-top: 35%;
+margin-bottom: 25%;
+overflow: hidden;}
+#statement p{font-size: 36px;
+line-height: 44px;}
+#logo{
+  height:35px;
+  margin-bottom:7px;}
+#communitiesCon{padding-top: 200px;}
+#lighttext p {font-size: 30px; line-height: 37px;}
+#lighttext2 p {font-size: 24px; line-height: 29px;}
+#communitiesCon {width: 100%;}
+.numberH, #tutorial p {font-size: 24px; line-height: 40px}
+.link-btn{
+  font-size: 30px;
+  background: #57D084;
+  padding: 24px 40px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin: 20px 20px;}
+  #createBtn .link-btn {font-size: 24px;}
+  #createBtn{margin: 120px 0 5px 0 ;
+  min-height:100px;
+  text-align: center;}
+
+}
