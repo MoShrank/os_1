@@ -54,7 +54,7 @@ class User(AbstractUser):
     picture = models.FileField(upload_to='', blank=True, null=True)
     meaning_of_life = models.CharField(max_length=100)
 
-    slug =  models.SlugField(max_length = 30, blank=True, null=True)
+    slug =  models.SlugField(max_length = 30)
 
     def save(self, *args, **kwargs):
         if self.id is None:
@@ -70,25 +70,30 @@ class User(AbstractUser):
 class Restaurant(models.Model):
     name = models.CharField(max_length=50)
     coupon = models.CharField(max_length=30,blank=True, null=True)
-    street = models.CharField(max_length=20, blank=True, null=True)
-    no = models.PositiveSmallIntegerField(blank=True, null=True)
+    street = models.CharField(max_length=20)
+    no = models.PositiveSmallIntegerField()
     email = models.EmailField()
 
     def __str__(self):
         return self.name
 
 class Lunch(models.Model):
-    name = models.CharField(max_length=30, null = True, blank = True)
-    date = models.DateField(null=True,blank=True)
+    date = models.DateField()
     restaurant = models.ForeignKey(Restaurant, on_delete = models.SET_NULL, null = True, blank = True)
     user = models.ManyToManyField(User)
 
     def __str__(self):
-        return self.name
+
+        ret_str = str(self.date)
+
+        if not self.restaurant:
+            return ret_str
+        else:
+            return self.restaurant + ' ' + ret_str
 
 class FutureLunch(models.Model):
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, blank = True)
     date = models.DateField()
 
     def __str__(self):
-        return str(self.date)
+        return self.user.first_name + ' ' + str(self.date)

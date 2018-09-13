@@ -1,43 +1,37 @@
 import random
 from datetime import date
-from .models import FutureLunch
+from .models import FutureLunch, Restaurant, Lunch, User
 
 
 def match_user(user_list, length):
 
     # first: check if even or odd number
 
+    random.shuffle(user_list)
+
     lunches = FutureLunch.objects.filter(date=date.today())
-    x = 0
-    for l in lunches:
-        print(x)
-        x = x +1
+    restaurants = Restaurant.objects.all()
+    restaurant_list = restaurants.values()
+    random.shuffle(restaurant_list)
 
+    if (length % 2) > 0:
 
-'''
-    if((length % 2) > 0):
-        rnd = random.randint(0, length)
         length = length - 1
-        user1 = user_list[rnd]
-        user_list.pop(rnd)
 
-    for n in (length/2)
-        rnd = random.randint(0, length)
-        length = length - 1
-        user2 = user_list[rnd]
-        user_list.pop(rnd)
-        rnd = random.randint(0, length)
-        lenght = length - 1
-        user3 = user_list[rnd]
-        user_list.pop(rnd)
+    length = int(length / 2)
 
-        lunch = Lunch(name='test', date=datetime.date())
+    for index in range(length):
+
+        lunch = Lunch(name='test', date=date.today())
         lunch.save()
-'''
 
+        lunch.user.add(User.objects.get(email=user_list[0]))
+        user_list.pop(0)
+        lunch.user.add(User.objects.get(email=user_list[0]))
+        user_list.pop(0)
 
-    #return 0
+        #get renadom resaurant and add it to Lunch
 
-
-def match_restaurant_to_user(user_list, restaurant_list):
-    return 0
+        #rnd = random.randint(0, len(restaurant_list))
+        #lunch.restaurant = Restaurant.objects.get(id=restaurant_list[rnd]['id'])
+        lunch.save()
