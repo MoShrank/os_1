@@ -1,6 +1,6 @@
 from celery import shared_task
-from .models import Lunch
 from .send_email import sendemail
+from .matching import match_user
 #from matching import create_lunch_entry
 
 
