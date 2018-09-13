@@ -59,3 +59,19 @@ class Profile(DetailView):
     model = User
     query_pk_and_slug  = True
     pk_url_kwarg = 'user_id'
+
+def cancel_lunch(request, date):
+
+    FutureLunch.objects.get(date=date).date()
+
+    return HttpResponse('hi')
+
+
+
+'''
+
+FutureLunch.objects.filter(user=request.user)
+Lunch.objects.filter(user=request.user)
+
+
+'''

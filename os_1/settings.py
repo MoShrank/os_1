@@ -111,8 +111,6 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOpenId',
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.google.GoogleOAuth',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.yahoo.YahooOpenId',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -141,17 +139,21 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = 'amqp://'
 CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_TIMEZONE = 'Europe/Berlin'
+CELERY_IMPORTS = ("talk2x.tasks")
 CELERYBEAT_SCHEDULE = {
 
-    'match_user': {
-        'task': 'talk2x.tasks.match_user',
-        'schedule' : crontab(hour=12)
+    'match_users_daily': {
+        'task': 'talk2x.tasks.create_matches',
+        'schedule' : crontab(hour=21, minute=19)
     },
 
-
+#    'delete_future_lunches': {
+#        'task': 'talk2x.tasks.create_matches',
+#        'schedule' : crontab(hour=20, minute=52)
+#    },
 
 }
 
@@ -161,13 +163,3 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'hi@talk2x.com'
 EMAIL_HOST_PASSWORD = 'Talk0396!'
-
-
-'''
-
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SERIALIZER = 'json'
-
-
-'''
