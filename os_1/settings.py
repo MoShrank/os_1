@@ -156,11 +156,12 @@ LOGOUT_REDIRECT_URL = '/'
 CELERY_BROKER_URL = 'amqp://localhost'
 CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_TIMEZONE = 'Europe/Berlin'
+CELERY_IMPORTS = ('talk2x.tasks')
 CELERYBEAT_SCHEDULE = {
 
     'match_user': {
-        'task': 'talk2x.tasks.match_user',
-        'schedule' : crontab(hour=12)
+        'task': 'talk2x.tasks.create_matches',
+        'schedule' : crontab(hour=11, minute=32)
     },
 
 

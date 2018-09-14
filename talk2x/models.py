@@ -89,7 +89,7 @@ class Lunch(models.Model):
         if not self.restaurant:
             return ret_str
         else:
-            return self.restaurant + ' ' + ret_str
+            return self.restaurant.name + ' ' + ret_str
 
 class FutureLunch(models.Model):
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, blank = True)

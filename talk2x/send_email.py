@@ -2,15 +2,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
-email = 'moritz.e50@gmail.com'
-day = 'monday'
-name = 'welf'
-restaurant = 'factory'
-
-
 subject = 'Lunch'
 
-recipient_list = [ email ]
 
 
 def get_message_user(day, partner1, restaurant,  partner2 = ''):
@@ -25,5 +18,5 @@ def get_message_user(day, partner1, restaurant,  partner2 = ''):
 def get_message_restaurant():
     return 0
 
-def sendemail():
-    send_mail(subject, '', settings.EMAIL_HOST_USER, recipient_list)
+def sendemail(receiver, day, restaurant, partner):
+    send_mail(subject, get_message_user(day, partner, restaurant), settings.EMAIL_HOST_USER, [receiver])

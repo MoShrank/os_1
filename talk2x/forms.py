@@ -5,11 +5,17 @@ from django.forms import ModelForm
 from .models import FutureLunch
 
 class SignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid code email addres.')
+    email = forms.EmailField(max_length=254)
 
     class Meta:
         model = User
         fields = ('email', 'password1', 'password2', 'first_name', 'last_name', 'meaning_of_life')
+        help_texts = {
+            'email': None,
+            'password1': None,
+            'password2': None
+        }
+
 
 class FutureLunch(ModelForm):
 

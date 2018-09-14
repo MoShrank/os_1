@@ -3,16 +3,21 @@ from datetime import date
 from .models import FutureLunch, Restaurant, Lunch, User
 
 
-def match_user(user_list, length):
+def match_user():
 
     # first: check if even or odd number
 
-    random.shuffle(user_list)
+    user_list = []
 
     lunches = FutureLunch.objects.filter(date=date.today())
     restaurants = Restaurant.objects.all()
     restaurant_list = restaurants.values()
-    random.shuffle(restaurant_list)
+
+    for l in lunches:
+        user_list.append(l.user.email)
+
+    length = len(user_list)
+    random.shuffle(user_list)
 
     if (length % 2) > 0:
 
@@ -22,7 +27,7 @@ def match_user(user_list, length):
 
     for index in range(length):
 
-        lunch = Lunch(name='test', date=date.today())
+        lunch = Lunch(date=date.today())
         lunch.save()
 
         lunch.user.add(User.objects.get(email=user_list[0]))
@@ -30,8 +35,5 @@ def match_user(user_list, length):
         lunch.user.add(User.objects.get(email=user_list[0]))
         user_list.pop(0)
 
-        #get renadom resaurant and add it to Lunch
-
-        #rnd = random.randint(0, len(restaurant_list))
-        #lunch.restaurant = Restaurant.objects.get(id=restaurant_list[rnd]['id'])
+        lunch.restaurant = Restaurant.objects.get(id=restaurant_list[index]['id'])
         lunch.save()
