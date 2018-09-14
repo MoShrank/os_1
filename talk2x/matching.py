@@ -8,6 +8,7 @@ def match_user():
     # first: check if even or odd number
 
     user_list = []
+    third_user = ''
 
     lunches = FutureLunch.objects.filter(date=date.today())
     restaurants = Restaurant.objects.all()
@@ -20,6 +21,9 @@ def match_user():
     random.shuffle(user_list)
 
     if (length % 2) > 0:
+
+        third_user = user_list[0]
+        user_list.pop(0)
 
         length = length - 1
 
@@ -37,3 +41,6 @@ def match_user():
 
         lunch.restaurant = Restaurant.objects.get(id=restaurant_list[index]['id'])
         lunch.save()
+
+    if not third_user == '':
+        lunch.user.add(User.objects.get(email=third_user))

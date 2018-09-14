@@ -161,7 +161,7 @@ CELERYBEAT_SCHEDULE = {
 
     'match_user': {
         'task': 'talk2x.tasks.create_matches',
-        'schedule' : crontab(hour=11, minute=32)
+        'schedule' : crontab(hour=11, minute=45)
     },
 
 
