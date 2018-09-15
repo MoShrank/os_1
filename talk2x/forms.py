@@ -17,7 +17,7 @@ class SignUpForm(UserCreationForm):
         }
 
 
-class FutureLunch(ModelForm):
+class FutureLunchForm(ModelForm):
 
     class Meta:
         model = FutureLunch

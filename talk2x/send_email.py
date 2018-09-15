@@ -20,3 +20,7 @@ def get_message_restaurant():
 
 def sendemail(receiver, day, restaurant, partner):
     send_mail(subject, get_message_user(day, partner, restaurant), settings.EMAIL_HOST_USER, [receiver])
+
+
+def send_activation_email(receiver, message):
+    send_mail('activate your account', message, settings.EMAIL_HOST_USER, [receiver])

@@ -1,14 +1,12 @@
-from django.contrib.auth.models import User
-from .models import Project
+from .models import User, FutureLunch
 from django.core.exceptions import PermissionDenied
 
 
-def user_is_project_author(function):
+def user_is_lunch_author(function):
     def wrap(request, *args, **kwargs):
-        project = Project.objects.get(pk=kwargs['project_id'])
-        account_set = project.accounts.all()
-        account = request.user
-        if account in account_set:
+        f_lunch = FutureLunch.objects.get(pk=kwargs['lunch_id'])
+
+        if f_lunch.user == request.user:
             return function(request, *args, **kwargs)
         else:
             raise PermissionDenied

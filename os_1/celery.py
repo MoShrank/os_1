@@ -7,7 +7,7 @@ app = Celery('os_1')
 
 app.config_from_object('django.conf:settings')
 
-app.autodiscover_tasks(packages='', force=True)
+#app.autodiscover_tasks(packages='', force=True)
 
 
 

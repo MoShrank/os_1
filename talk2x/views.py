@@ -3,13 +3,23 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
 from .forms import *
-from .send_email import sendemail
-from .forms import SignUpForm
+
 from django.contrib.auth import login, authenticate
 from django.core.exceptions import ValidationError
-from .models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from .models import FutureLunch, User
+from .decorators import *
+from .send_email import send_activation_email
+
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
+
+
+
 
 # Create your views here.
 
@@ -30,14 +40,40 @@ class Signup(CreateView):
 
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password1')
-        user = authenticate(email=email, password=password)
-        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
+    #    user = authenticate(email=email, password=password)
+    #    login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
+
+
+        user = form.save(commit=False)
+        user.is_active = False
+        user.save()
+        current_site = get_current_site(self.request)
+
+        message = 'Hi ' + user.first_name + ', Please click on the link to confirm your registration, http://localhost:8000/activate/' + str(user.pk) + '/' + str(account_activation_token.make_token(user))
+
+        send_activation_email(email, message)
 
         return super().form_valid(form)
 
+def activate(request, pk, token):
+
+     #try:
+    user = User.objects.get(pk=pk)
+    #except:
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+
+        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
+
+    return HttpResponse('hi')
+
 @method_decorator(login_required, name='dispatch')
-class FutureLunch(CreateView):
-    form_class = FutureLunch
+class CreateFutureLunch(CreateView):
+    form_class = FutureLunchForm
     template_name = 'lunch.html'
     success_url = '/'
 
@@ -59,3 +95,11 @@ class Profile(DetailView):
     model = User
     query_pk_and_slug  = True
     pk_url_kwarg = 'user_id'
+
+@login_required
+@user_is_lunch_author
+def cancel_lunch(request, lunch_id):
+
+    FutureLunch.objects.get(id=lunch_id).delete()
+
+    return HttpResponseRedirect('/lunch/')

@@ -16,13 +16,14 @@ def send_email(lunch):
 
 @shared_task()
 def create_matches():
-
+    return 0
+'''
     match_user()
 
     lunches = Lunch.objects.filter(date=date.today())
 
     for l in lunches:
         send_email(l)  #.delay(l)
+'''
 
-
-    return 0
+    #return 0

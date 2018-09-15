@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 from celery.schedules import crontab
 from datetime import timedelta
+import djcelery
+djcelery.setup_loader()
 
 
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'talk2x.apps.Talk2XConfig',
     'celery',
+    'djcelery',
 ]
 
 MIDDLEWARE = [
@@ -154,14 +157,16 @@ LOGIN_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 CELERY_BROKER_URL = 'amqp://localhost'
-CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+#CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_TIMEZONE = 'Europe/Berlin'
 CELERY_IMPORTS = ('talk2x.tasks')
 CELERYBEAT_SCHEDULE = {
 
     'match_user': {
         'task': 'talk2x.tasks.create_matches',
-        'schedule' : crontab(hour=11, minute=45)
+        'schedule' : 10
+        # crontab(hour=11, minute=45)
     },
 
 
