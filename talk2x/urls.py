@@ -11,8 +11,7 @@ urlpatterns = [
     path('login/', auth_views.login, name='login'),
     path('logout/', auth_views.logout, name='logout'),
     path('signup/', Signup.as_view()),
-    path('activate/<int:pk>/<str:token>',
-        views.activate, name='activate'),
+    path('activate/<int:pk>/<str:token>', views.activate, name='activate'),
     #path('reset-password')
 
     path('profile/<slug:slug>-<int:user_id>', Profile.as_view()),
@@ -22,5 +21,5 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
 
 
-    path('', include('social_django.urls', namespace='social'))
+    path('social/', include('social_django.urls', namespace='social'))
 ]

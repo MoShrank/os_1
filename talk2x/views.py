@@ -13,9 +13,6 @@ from .decorators import *
 from .send_email import send_activation_email
 
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes, force_text
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.template.loader import render_to_string
 from .tokens import account_activation_token
 
 
@@ -25,8 +22,11 @@ from .tokens import account_activation_token
 
 
 def home(request):
-    return render(request, 'home.html');
 
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/login')
+
+    return render(request, 'home.html');
 
 def contact(request):
     return render(request, 'contact.html')
@@ -39,10 +39,6 @@ class Signup(CreateView):
     def form_valid(self, form):
 
         email = form.cleaned_data.get('email')
-        password = form.cleaned_data.get('password1')
-    #    user = authenticate(email=email, password=password)
-    #    login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
-
 
         user = form.save(commit=False)
         user.is_active = False
@@ -57,19 +53,20 @@ class Signup(CreateView):
 
 def activate(request, pk, token):
 
-     #try:
-    user = User.objects.get(pk=pk)
-    #except:
+    try:
+        user = User.objects.get(pk=pk)
+    except Exception as e:
+        user = None
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
 
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return HttpResponseRedirect('/login')
     else:
         return HttpResponse('Activation link is invalid!')
 
-    return HttpResponse('hi')
+    # code for activating email taken and modified from https://medium.com/@frfahim/django-registration-with-confirmation-email-bb5da011e4ef
 
 @method_decorator(login_required, name='dispatch')
 class CreateFutureLunch(CreateView):

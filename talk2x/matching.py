@@ -3,33 +3,51 @@ from datetime import date
 from .models import FutureLunch, Restaurant, Lunch, User
 
 
-def match_user():
+#turns restaurant queryset into list of ids and shuffles it
+def get_random_restaurant_list(queryset):
 
-    # first: check if even or odd number
+    restaurant_list = []
+
+    for r in queryset:
+        restaurant_list.append(r.id)
+
+    random.shuffle(restaurant_list)
+    return restaurant_list
+
+#turns user queryset into list of email and shuffles it
+def get_random_user_list(queryset):
 
     user_list = []
+
+    for u in queryset:
+        user_list.append(u.user.email)
+
+    random.shuffle(user_list)
+    return user_list
+
+#matches two (or three) users and a restaurant and creates Lunch entry in database
+def match_user():
+
+    #get all values
     third_user = ''
 
-    lunches = FutureLunch.objects.filter(date=date.today())
-    restaurants = Restaurant.objects.all()
-    restaurant_list = restaurants.values()
+    restaurant_list = get_random_restaurant_list(Restaurant.objects.all())
+    user_list = get_random_user_list(FutureLunch.objects.filter(date=date.today()))
 
-    for l in lunches:
-        user_list.append(l.user.email)
+    restaurant_length = len(restaurant_list)
+    user_length = len(user_list)
 
-    length = len(user_list)
-    random.shuffle(user_list)
-
-    if (length % 2) > 0:
+    # first: check if even or odd number
+    if (user_length % 2) > 0:
 
         third_user = user_list[0]
         user_list.pop(0)
 
-        length = length - 1
+        user_length = user_length - 1
 
-    length = int(length / 2)
+    user_length = int(user_length / 2)
 
-    for index in range(length):
+    for index in range(user_length):
 
         lunch = Lunch(date=date.today())
         lunch.save()
@@ -39,8 +57,16 @@ def match_user():
         lunch.user.add(User.objects.get(email=user_list[0]))
         user_list.pop(0)
 
-        lunch.restaurant = Restaurant.objects.get(id=restaurant_list[index]['id'])
-        lunch.save()
+
+        if(restaurant_length == 0):
+            restaurant_list = get_random_restaurant_list(Restaurant.objects.all())
+            restaurant_length = len(restaurant_list)
+
+        else:
+            lunch.restaurant = Restaurant.objects.get(id=restaurant_list[index])
+            restaurant_list.pop(index)
+            restaurant_length = restaurant_length - 1
+            lunch.save()
 
     if not third_user == '':
         lunch.user.add(User.objects.get(email=third_user))
