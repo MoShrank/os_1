@@ -15,8 +15,7 @@ from .send_email import send_activation_email
 from django.contrib.sites.shortcuts import get_current_site
 from .tokens import account_activation_token
 
-
-
+from django.contrib.auth import views as auth_views
 
 # Create your views here.
 
@@ -35,6 +34,12 @@ class Signup(CreateView):
     form_class = SignUpForm
     template_name = 'registration/signup.html'
     success_url = '/'
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect('/')
+        else:
+            return render(request, self.template_name, { 'form' : self.form_class})
 
     def form_valid(self, form):
 

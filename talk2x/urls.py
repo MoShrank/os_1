@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from .views import Signup, Profile, EditProfile, CreateFutureLunch
+from .views import  Signup, Profile, EditProfile, CreateFutureLunch
 from django.contrib.auth import views as auth_views
 #from .views import newRestaurant
 
@@ -8,8 +8,9 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', views.home, name='home'),
 
-    path('login/', auth_views.login, name='login'),
-    path('logout/', auth_views.logout, name='logout'),
+    path('login/', auth_views.LoginView.as_view(redirect_authenticated_user=True)),
+    #auth_views.login, name='login'),
+    path('logout/', auth_views.LogoutView.as_view()),
     path('signup/', Signup.as_view()),
     path('activate/<int:pk>/<str:token>', views.activate, name='activate'),
     #path('reset-password')
