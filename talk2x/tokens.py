@@ -8,9 +8,7 @@ class TokenGenerator(PasswordResetTokenGenerator):
             six.text_type(user.pk) + six.text_type(timestamp) +
             six.text_type(user.is_active)
         )
-        
+
 account_activation_token = TokenGenerator()
-
-
 
 #code taken from https://medium.com/@frfahim/django-registration-with-confirmation-email-bb5da011e4ef

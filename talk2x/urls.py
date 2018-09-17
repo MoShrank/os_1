@@ -9,11 +9,11 @@ urlpatterns = [
     path('', views.home, name='home'),
 
     path('login/', auth_views.LoginView.as_view(redirect_authenticated_user=True)),
-    #auth_views.login, name='login'),
     path('logout/', auth_views.LogoutView.as_view()),
     path('signup/', Signup.as_view()),
     path('activate/<int:pk>/<str:token>', views.activate, name='activate'),
-    #path('reset-password')
+    path('password_reset', auth_views.PasswordResetView.as_view()),
+    path('password_reset/done', auth_views.PasswordChangeDoneView.as_view()),
 
     path('profile/<slug:slug>-<int:user_id>', Profile.as_view()),
     path('profile/<slug:slug>-<int:user_id>/edit', EditProfile.as_view()),
@@ -22,5 +22,5 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
 
 
-    path('social/', include('social_django.urls', namespace='social'))
+    #path('social/', include('social_django.urls', namespace='social'))
 ]

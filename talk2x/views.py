@@ -10,12 +10,11 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import FutureLunch, User
 from .decorators import *
+
 from .send_email import send_activation_email
 
 from django.contrib.sites.shortcuts import get_current_site
 from .tokens import account_activation_token
-
-from django.contrib.auth import views as auth_views
 
 # Create your views here.
 

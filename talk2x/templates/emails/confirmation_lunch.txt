@@ -1,0 +1,10 @@
+Ahoy {{ name }}!
+
+Thank you for choosing the {{ date }} for your talk 2 CODE student
+
+The system will randomly find you a perfect match and we will notify you 1 hour before.
+
+In case there are any obstacles, feel free to cancel event here <domain/profile/{{ name }}-{{ name.id }}> in any other case feel free to contact the team:
+
+Yoaf - Slack @Yoav Weber
+Tania- Slack @Tania,

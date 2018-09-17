@@ -1,0 +1,8 @@
+Hi  {{ name }}!
+
+Thank you very much for your registration on our talk2x platform. To verify your email, please follow the link:
+
+{{ link }}
+
+Best regards,
+talk2x team

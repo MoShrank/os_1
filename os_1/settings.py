@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 from celery.schedules import crontab
 from datetime import timedelta
-import djcelery
-djcelery.setup_loader()
+#import djcelery
+#djcelery.setup_loader()
 
 
 
@@ -37,7 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'social_django',
+#    'social_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'talk2x.apps.Talk2XConfig',
     'celery',
-    'djcelery',
+#    'djcelery',
 ]
 
 MIDDLEWARE = [
@@ -110,12 +110,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.open_id.OpenIdAuth',
-    'social_core.backends.google.GoogleOpenId',
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.google.GoogleOAuth',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.yahoo.YahooOpenId',
+#    'social_core.backends.open_id.OpenIdAuth',
+#    'social_core.backends.google.GoogleOpenId',
+#    'social_core.backends.google.GoogleOAuth2',
+#    'social_core.backends.google.GoogleOAuth',
+#    'social_core.backends.twitter.TwitterOAuth',
+#    'social_core.backends.yahoo.YahooOpenId',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -165,8 +165,7 @@ CELERYBEAT_SCHEDULE = {
 
     'match_user': {
         'task': 'talk2x.tasks.create_matches',
-        'schedule' : 10
-        # crontab(hour=11, minute=45)
+        'schedule' : crontab(hour=11, minute=45)
     },
 
 
