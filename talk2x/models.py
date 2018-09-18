@@ -94,6 +94,7 @@ class Lunch(models.Model):
 class FutureLunch(models.Model):
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, blank = True)
     date = models.DateField()
+    is_active = models.BooleanField(default = True)
 
     def __str__(self):
         return self.user.first_name + ' ' + str(self.date)

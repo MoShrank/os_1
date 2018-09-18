@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 from .models import FutureLunch, User
 from .decorators import *
 
-#from .send_email import send_activation_email
+from .send_email import send_email
 
 from django.contrib.sites.shortcuts import get_current_site
 from .tokens import account_activation_token
@@ -49,9 +49,9 @@ class Signup(CreateView):
         user.save()
         current_site = get_current_site(self.request)
 
-        message = 'Hi ' + user.first_name + ', Please click on the link to confirm your registration, http://localhost:8000/activate/' + str(user.pk) + '/' + str(account_activation_token.make_token(user))
+        link = 'http://localhost:8000/activate/' + str(user.pk) + '/' + str(account_activation_token.make_token(user))
 
-        #send_activation_email(email, message)
+        send_email('confirm registration', email, { 'name' : user.first_name, 'link' : link })
 
         return super().form_valid(form)
 

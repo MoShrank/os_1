@@ -1,46 +1,47 @@
 from django.core.mail import send_mail
 from django.conf import settings
-
 from django.template.loader import get_template
 
 
 
-def lunch():
+def lunch(context):
 
-    context = {
-        'name' : 'hi'
-    }
+    if 'partner2' in context:
 
-    email = get_template('emails/lunch_one_person.txt')
+        email = get_template('emails/lunch_one_person.txt')
+
+    else:
+
+        email = get_template('emails/lunch_two_persons.txt')
 
     return email.render(context)
 
-def lunch_feedback():
-    return 0
+def lunch_feedback(context):
 
-def lunch_confirmation():
-    return 0
+    email = get_template('emails/lunch_feedback.txt')
 
-def confirm_registration():
-    return 0
+    return email.render(context)
 
-def get_message(subject):
+def confirm_registration(context):
+
+    email = get_template('emails/confirm_registration.txt')
+
+    return email.render(context)
+
+#returns email as string related to subject --> right context must be given
+def get_message(subject, context):
 
     switch_messages = { 'confirm registration' : confirm_registration,
-                        'lunch confirmation' : lunch_confirmation,
                         'lunch feedback:' : lunch_feedback,
                         'lunch' : lunch
                         }
 
 
-    function = switch_messages.get(subject, lambda: 'invalid email')
+    function = switch_messages.get(subject, 'invalid email')
 
-    return function()
+    return function(context)
 
 
-def send_email(subject, message, to):
+def send_email(subject, to, context):
 
-    send_mail(subject, get_message(), settings.EMAIL_HOST_USER, [to])
-
-#def sendemail(receiver, day, restaurant, partner):
-#send_mail(subject, get_message_user(day, partner, restaurant), settings.EMAIL_HOST_USER, [receiver])
+    send_mail(subject, get_message(subject, context), settings.EMAIL_HOST_USER, [to])
