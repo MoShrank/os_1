@@ -7,7 +7,7 @@ from .models import Lunch
 from datetime import date
 
 #@shared.task()
-def send_email(lunch):
+def send_emails(lunch):
 
     receiver = lunch.user.all()
 
@@ -24,4 +24,4 @@ def create_matches():
     lunches = Lunch.objects.filter(date=date.today())
 
     for l in lunches:
-        send_email(l)  #.delay(l)
+        send_emails(l)  #.delay(l)
