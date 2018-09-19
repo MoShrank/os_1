@@ -2,11 +2,11 @@ Hola!
 
 You have your lunch today at 1pm at {{ restaurant.name }}, {{ restaurant.street }}.{{ restaurant.no }}
 
-Your x is <x name>, <x photo>
+Your partner is {{ partner.name }}, <x photo>
 
 Do you wanna know what is the sense of life according to
 
-{{ user.meaning_of_life }}
+{{ partner.meaning_of_life }}
 
 Hope you will enjoy your meal!
 

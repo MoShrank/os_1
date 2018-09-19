@@ -7,8 +7,11 @@ def main():
     django_thread = Thread(target=start_django, args=())
     django_thread.start()
 
-    celery_thread = Thread(target=start_celery, args=())
-    celery_thread.start()
+    celery_worker_thread = Thread(target=start_celery_worker, args=())
+    celery_worker_thread.start()
+
+    celery_beat_thread = Thread(target=start_celery_beat, args=())
+    celery_beat_thread.start()
 
 def start_django():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "os_1.settings")
@@ -21,8 +24,11 @@ def start_django():
     django_args.append('--noreload')
     execute_from_command_line(django_args)
 
-def start_celery():
+def start_celery_worker():
     subprocess.call(['celery', '-A', 'os_1', 'worker', '-l', 'info'])
+
+def start_celery_beat():
+    subprocess.call(['celery', '-A', 'os_1', 'beat', '-l', 'info'])
 
 if __name__ == "__main__":
     main()

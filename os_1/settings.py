@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'talk2x.apps.Talk2XConfig',
-    'celery',
-#    'djcelery',
+#    'celery',
+    'djcelery',
 ]
 
 MIDDLEWARE = [
@@ -165,7 +165,7 @@ CELERYBEAT_SCHEDULE = {
 
     'match_user': {
         'task': 'talk2x.tasks.create_matches',
-        'schedule' : crontab(hour=11, minute=45)
+        'schedule' : 20#crontab(hour=12)
     },
 
 
@@ -178,6 +178,8 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'hi@talk2x.com'
 EMAIL_HOST_PASSWORD = 'Talk0396!'
+DEFAULT_FROM_EMAIL = 'hi@talk2x.com'
+SERVER_EMAIL = 'hi@talk2x.com'
 
 
 '''

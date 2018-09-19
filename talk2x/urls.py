@@ -12,9 +12,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view()),
     path('signup/', Signup.as_view()),
     path('activate/<int:pk>/<str:token>', views.activate, name='activate'),
-    path('password_reset', auth_views.PasswordResetView.as_view()),
-    path('password_reset/done', auth_views.PasswordChangeDoneView.as_view()),
 
+    path('accounts/', include('django.contrib.auth.urls')),
     path('profile/<slug:slug>-<int:user_id>', Profile.as_view()),
     path('profile/<slug:slug>-<int:user_id>/edit', EditProfile.as_view()),
     path('lunch/', CreateFutureLunch.as_view()),
