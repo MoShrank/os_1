@@ -31,7 +31,7 @@ SECRET_KEY = 'tceawen-!)jijo-_+oe^&h&2=8-0-q(cx7q%4qz&)^=7#w#*a0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '109.94.110.10', 'talk2x.com']
 
 
 # Application definition
@@ -156,7 +156,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = 'amqp://'
 CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 #CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_TIMEZONE = 'Europe/Berlin'
