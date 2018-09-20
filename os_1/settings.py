@@ -165,7 +165,7 @@ CELERYBEAT_SCHEDULE = {
 
     'match_user': {
         'task': 'talk2x.tasks.create_matches',
-        'schedule' : crontab(hour=12)
+        'schedule' : 20#crontab(hour=12)
     },
 
     'delete_future_lunches': {

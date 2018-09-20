@@ -9,6 +9,5 @@ def validate_code_mail(email):
         return False
     email = email[index:]
 
-    for n in range(11):
-        if code[n] != email[n]:
-            raise ValidationError('no valid email')
+    if code != email:
+        raise ValidationError('no valid email')

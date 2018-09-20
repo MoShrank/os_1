@@ -9,13 +9,18 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password1', 'password2', 'first_name', 'last_name', 'meaning_of_life')
+        fields = ['email', 'password1', 'password2', 'first_name', 'last_name', 'meaning_of_life']
         help_texts = {
             'email': None,
             'password1': None,
             'password2': None
         }
 
+class EditProfile(ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['email', 'first_name', 'last_name', 'meaning_of_life']
 
 class FutureLunchForm(ModelForm):
 

@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.detail import DetailView
 from .forms import *
+from django.urls import reverse
 
 from django.contrib.auth import login, authenticate
 from django.core.exceptions import ValidationError
@@ -21,13 +22,12 @@ from .tokens import account_activation_token
 
 def home(request):
 
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect('/login')
-
     return render(request, 'home.html');
+
 
 def contact(request):
     return render(request, 'contact.html')
+
 
 class Signup(CreateView):
     form_class = SignUpForm
@@ -55,6 +55,7 @@ class Signup(CreateView):
 
         return super().form_valid(form)
 
+
 def activate(request, pk, token):
 
     try:
@@ -72,23 +73,30 @@ def activate(request, pk, token):
 
     # code for activating email taken and modified from https://medium.com/@frfahim/django-registration-with-confirmation-email-bb5da011e4ef
 
+
 @method_decorator(login_required, name='dispatch')
 class CreateFutureLunch(CreateView):
     form_class = FutureLunchForm
     template_name = 'lunch.html'
-    success_url = '/'
+
+    def get_success_url(self):
+        return reverse('lunch')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+
 @method_decorator(login_required, name='dispatch')
 class EditProfile(UpdateView):
     model = User
+    form_class = EditProfile
     template_name = 'profile_edit.html'
-    form_class = SignUpForm
     pk_url_kwarg = 'user_id'
-    success_url = '/profile/{user_id}-{slug}'
+
+    def get_success_url(self):
+        return reverse('profile', kwargs={'slug' : self.object.slug, 'user_id' : self.object.id})
+
 
 @method_decorator(login_required, name='dispatch')
 class Profile(DetailView):
@@ -97,10 +105,11 @@ class Profile(DetailView):
     query_pk_and_slug  = True
     pk_url_kwarg = 'user_id'
 
+
 @login_required
 @user_is_lunch_author
 def cancel_lunch(request, lunch_id):
 
     FutureLunch.objects.get(id=lunch_id).delete()
 
-    return HttpResponseRedirect('/lunch/')
+    return HttpResponseRedirect(reverse('profile', kwargs={'slug' : request.user.slug, 'user_id' : request.user.id}))
