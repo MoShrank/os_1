@@ -1,12 +1,12 @@
-Dear <name>
+Dear {{ user.name }}
 
 talk2x team truly hope you enjoyed your lunch and ready to share your feedback
 
 It won’t take more than 2 minutes but will help us to grow and to make platform better!
 
-<google presentation link>
+{{ link }}
 
-Book new talk [hyperlink]
+Book new talk talk2x.com/profile/{{ user.name }}-{{ user.id }}
 
 Should you have any questions, feel free to contact the team:
 

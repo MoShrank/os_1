@@ -1,7 +1,5 @@
 from celery import shared_task
-
 from .send_email import send_email
-
 from .matching import match_user
 from .models import Lunch
 from datetime import date
@@ -25,3 +23,8 @@ def create_matches():
 
     for l in lunches:
         send_emails(l)  #.delay(l)
+
+@shared_task()
+def delete_future_lunch():
+
+    FutureLunch.objects.filter(date=date.today()).delete()

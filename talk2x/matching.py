@@ -32,7 +32,9 @@ def match_user():
     third_user = ''
 
     restaurant_list = get_random_restaurant_list(Restaurant.objects.all())
-    user_list = get_random_user_list(FutureLunch.objects.filter(date=date.today()))
+
+    #only gets FutureLunches from today and where is_active is true
+    user_list = get_random_user_list(FutureLunch.objects.filter(date=date.today()).filter(is_active=True))
 
     restaurant_length = len(restaurant_list)
     user_length = len(user_list)
@@ -47,6 +49,7 @@ def match_user():
 
     user_length = int(user_length / 2)
 
+    #match user and restaurants and create lunch entry
     for index in range(user_length):
 
         lunch = Lunch(date=date.today())
@@ -58,7 +61,7 @@ def match_user():
         user_list.pop(0)
 
 
-        if(restaurant_length == 0):
+        if restaurant_length == 0:
             restaurant_list = get_random_restaurant_list(Restaurant.objects.all())
             restaurant_length = len(restaurant_list)
 

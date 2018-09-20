@@ -8,11 +8,11 @@ def lunch(context):
 
     if 'partner2' in context:
 
-        email = get_template('emails/lunch_one_person.txt')
+        email = get_template('emails/lunch_two_persons.txt')
 
     else:
 
-        email = get_template('emails/lunch_two_persons.txt')
+        email = get_template('emails/lunch_one_person.txt')
 
     return email.render(context)
 
