@@ -9,7 +9,7 @@ from django.contrib.auth import login, authenticate
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import FutureLunch, User
+from .models import FutureLunch, User, Lunch
 from .decorators import *
 
 from .send_email import send_email
