@@ -22,6 +22,15 @@ from .tokens import account_activation_token
 
 def home(request):
 
+    if request.user.is_authenticated:
+
+        fl = FutureLunch.objects.filter(user=request.user)
+        pl = Lunch.objects.filter(user=request.user)
+
+        context = { 'FutureLunch' : fl, 'PastLunch' : pl }
+
+        return render(request, 'home.html', context)
+
     return render(request, 'home.html');
 
 
@@ -47,9 +56,8 @@ class Signup(CreateView):
         user = form.save(commit=False)
         user.is_active = False
         user.save()
-        current_site = get_current_site(self.request)
 
-        link = 'http://localhost:8000/activate/' + str(user.pk) + '/' + str(account_activation_token.make_token(user))
+        link = get_current_site(self.request).domain + reverse('activate', kwargs={'pk' : str(user.pk), 'token' : str(account_activation_token.make_token(user))})
 
         send_email('confirm registration', email, { 'name' : user.first_name, 'link' : link })
 
@@ -67,7 +75,7 @@ def activate(request, pk, token):
         user.save()
 
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        return HttpResponseRedirect('/login')
+        return HttpResponseRedirect('/')
     else:
         return HttpResponse('Activation link is invalid!')
 

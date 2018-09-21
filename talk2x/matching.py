@@ -72,4 +72,24 @@ def match_user():
             lunch.save()
 
     if not third_user == '':
-        lunch.user.add(User.objects.get(email=third_user))
+
+        try:
+
+            staff = User.objects.filter(is_staff=True).get(availabilty=date.today().strftime("%A").upper())
+            lunch = Lunch(date=today())
+            lunch.save()
+            lunch.user.add(User.objects.get(email=third_user))
+            lunch.user.add(staff)
+
+            if restaurant_length == 0:
+                restaurant_list = get_random_restaurant_list(Restaurant.objects.all())
+                restaurant_length = len(restaurant_list)
+
+            else:
+
+                rnd = random.randint(1, len(restaurant_list))
+                lunch.restaurant = Restaurant.objects.get(id=restaurant_list[rnd])
+
+        except Exception as e:
+
+            return 0

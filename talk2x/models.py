@@ -54,6 +54,18 @@ class User(AbstractUser):
     picture = models.FileField(upload_to='', blank=True, null=True)
     meaning_of_life = models.CharField(max_length=100)
 
+    #only for is_staff
+    DAY_CHOICES = (
+        ('MONDAY', 'monday'),
+        ('TUESDAY', 'tuesday'),
+        ('WEDNESDAY', 'wednesday'),
+        ('THURSDAY', 'thursday'),
+        ('FRIDAY', 'friday'),
+        ('EVERYDAY', 'everyday')
+    )
+
+    availabilty = models.CharField(max_length=10, choices=DAY_CHOICES, blank=True, null=True)
+
     slug =  models.SlugField(max_length = 30)
 
     def save(self, *args, **kwargs):
