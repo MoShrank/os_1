@@ -2,7 +2,9 @@ from django.urls import path, include
 from . import views
 from .views import  Signup, Profile, EditProfile, CreateFutureLunch
 from django.contrib.auth import views as auth_views
-#from .views import newRestaurant
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 urlpatterns = [
@@ -24,3 +26,6 @@ urlpatterns = [
 
     #path('social/', include('social_django.urls', namespace='social'))
 ]
+
+if settings.DEBUG is True:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

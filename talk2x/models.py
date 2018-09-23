@@ -51,7 +51,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-    picture = models.FileField(upload_to='', blank=True, null=True)
+    picture = models.ImageField(upload_to='', blank=True, null=True)
     meaning_of_life = models.CharField(max_length=100)
 
     #only for is_staff
@@ -65,6 +65,7 @@ class User(AbstractUser):
     )
 
     availabilty = models.CharField(max_length=10, choices=DAY_CHOICES, blank=True, null=True)
+    subscribe_to_email = models.BooleanField(default = True)
 
     slug =  models.SlugField(max_length = 30)
 

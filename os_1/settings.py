@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 from celery.schedules import crontab
-from datetime import timedelta
 #import djcelery
 #djcelery.setup_loader()
 
@@ -165,7 +164,7 @@ CELERYBEAT_SCHEDULE = {
 
     'match_user': {
         'task': 'talk2x.tasks.create_matches',
-        'schedule' : 20#crontab(hour=12)
+        'schedule' : crontab(hour=12)
     },
 
     'delete_future_lunches': {
@@ -185,13 +184,3 @@ EMAIL_HOST_USER = 'hi@talk2x.com'
 EMAIL_HOST_PASSWORD = 'Talk0396!'
 DEFAULT_FROM_EMAIL = 'hi@talk2x.com'
 SERVER_EMAIL = 'hi@talk2x.com'
-
-
-'''
-
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SERIALIZER = 'json'
-
-
-'''
