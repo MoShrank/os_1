@@ -1,7 +1,7 @@
 from celery import shared_task
 from .send_email import send_email
 from .matching import match_user
-from .models import Lunch
+from .models import Lunch, FutureLunch
 from datetime import date
 
 #@shared.task()
