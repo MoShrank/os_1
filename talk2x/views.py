@@ -20,6 +20,9 @@ from .tokens import account_activation_token
 # Create your views here.
 
 
+profile_decorator = [ login_required, users_profile ]
+
+
 def home(request):
 
     if request.user.is_authenticated:
@@ -95,7 +98,7 @@ class CreateFutureLunch(CreateView):
         return super().form_valid(form)
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(profile_decorator, name='dispatch')
 class EditProfile(UpdateView):
     model = User
     form_class = EditProfile
@@ -106,17 +109,13 @@ class EditProfile(UpdateView):
         return reverse('profile', kwargs={'slug' : self.object.slug, 'user_id' : self.object.id})
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(profile_decorator, name='dispatch')
 class Profile(DetailView):
     template_name = 'profile.html'
     model = User
     query_pk_and_slug  = True
     pk_url_kwarg = 'user_id'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['user'] = self.request.user
-        return context
+    context_object_name = 'user'
 
 
 @login_required
