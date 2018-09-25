@@ -6,7 +6,6 @@ from .forms import *
 from django.urls import reverse
 
 from django.contrib.auth import login, authenticate
-from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import FutureLunch, User, Lunch
@@ -44,7 +43,7 @@ def contact(request):
 class Signup(CreateView):
     form_class = SignUpForm
     template_name = 'registration/signup.html'
-    success_url = '/'
+    success_url = '/registration/activate_email'
 
     def get(self, request):
         if request.user.is_authenticated:
@@ -125,3 +124,21 @@ def cancel_lunch(request, lunch_id):
     FutureLunch.objects.get(id=lunch_id).delete()
 
     return HttpResponseRedirect(reverse('profile', kwargs={'slug' : request.user.slug, 'user_id' : request.user.id}))
+
+@login_required
+def unsubscribe(request, slug, user_id):
+
+    user = request.user
+    user.subscribe_to_email = False
+    user.save()
+
+    return HttpResponseRedirect(reverse('profile', kwargs={'slug' : slug, 'user_id' : user.id}))
+
+@login_required
+def subscribe(request, slug, user_id):
+
+    user = request.user
+    user.subscribe_to_email = True
+    user.save()
+
+    return HttpResponseRedirect(reverse('profile', kwargs={'slug' : slug, 'user_id' : user.id}))

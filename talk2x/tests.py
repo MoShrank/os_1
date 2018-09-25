@@ -16,3 +16,10 @@ def test_email():
     }
 
     return get_message('lunch', context)
+
+def test_():
+
+    for n in range(250):
+
+        send_email('confirm registration', 'welf.tenx@gmail.com', { 'name' : 'welf', 'link' : 'talk2.com' })
+        print(n)
