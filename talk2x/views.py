@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 from .models import FutureLunch, User, Lunch
 from .decorators import *
 
-from .send_email import send_email
+from .tasks import send_email
 
 from django.contrib.sites.shortcuts import get_current_site
 from .tokens import account_activation_token
@@ -33,7 +33,11 @@ def home(request):
 
         return render(request, 'home.html', context)
 
-    return render(request, 'home.html');
+    return HttpResponseRedirect(reverse('login'))
+
+
+def index(request):
+    return render(request, 'index.html')
 
 
 def contact(request):
@@ -61,7 +65,7 @@ class Signup(CreateView):
 
         link = get_current_site(self.request).domain + reverse('activate', kwargs={'pk' : str(user.pk), 'token' : str(account_activation_token.make_token(user))})
 
-        send_email('confirm registration', email, { 'name' : user.first_name, 'link' : link })
+        send_email.delay('confirm registration', email, { 'name' : user.first_name, 'link' : link })
 
         return super().form_valid(form)
 
@@ -94,6 +98,7 @@ class CreateFutureLunch(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+
         return super().form_valid(form)
 
 

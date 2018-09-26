@@ -1,22 +1,16 @@
-from celery import shared_task, task
-from .send_email import send_email
+from celery import shared_task
 from .matching import match_user
 from .models import Lunch, FutureLunch
 from datetime import date
-
-#@shared.task()
-def send_emails(lunch):
-
-    receiver = lunch.user.all()
-
-    send_email('lunch', receiver[0].email, { 'partner' : receiver[1], 'restaurant' : lunch.restaurant })
-
-    send_email('lunch', receiver[1].email, { 'partner' : receiver[0], 'restaurant' : lunch.restaurant })
+from django.core.mail import send_mail
+from .get_message import get_message
+from django.conf import settings
 
 
-@shared_task
-def send_email_test():
-    send_email('lunch', 'welf.tenx@gmail.com', { 'partner' : 'hi', 'restaurant' : 'test' })
+@shared_task()
+def send_email(subject, to, context):
+
+    send_mail(subject, get_message(subject, context), settings.EMAIL_HOST_USER, [to])
 
 
 @shared_task()
@@ -27,7 +21,13 @@ def create_matches():
     lunches = Lunch.objects.filter(date=date.today())
 
     for l in lunches:
-        send_emails(l)  #.delay(l)
+
+        receiver = l.user.all()
+
+        send_email.delay('lunch', receiver[0].email, { 'partner' : receiver[1], 'restaurant' : l.restaurant })
+
+        send_email.delay('lunch', receiver[1].email, { 'partner' : receiver[0], 'restaurant' : l.restaurant })
+
 
 @shared_task()
 def delete_future_lunch():

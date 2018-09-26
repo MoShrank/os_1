@@ -8,7 +8,8 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.index, name='index'),
+    path('home/', views.home, name='home'),
 
     path('login/', auth_views.LoginView.as_view(redirect_authenticated_user=True)),
     path('logout/', auth_views.LogoutView.as_view()),

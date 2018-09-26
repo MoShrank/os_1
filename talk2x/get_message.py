@@ -1,5 +1,3 @@
-from django.core.mail import send_mail
-from django.conf import settings
 from django.template.loader import get_template
 
 
@@ -22,20 +20,22 @@ def confirm_registration(context):
 
     return email.render(context)
 
+def confirmation_lunch(context):
+
+    email = get_template('emails/confirmation_lunch')
+
+    return email.render(context)
+
 #returns email as string related to subject --> right context must be given
 def get_message(subject, context):
 
     switch_messages = { 'confirm registration' : confirm_registration,
                         'lunch feedback:' : lunch_feedback,
-                        'lunch' : lunch
+                        'lunch' : lunch,
+                        'confirm lunch' : confirmation_lunch
                         }
 
 
     function = switch_messages.get(subject, 'invalid email')
 
     return function(context)
-
-
-def send_email(subject, to, context):
-
-    send_mail(subject, get_message(subject, context), settings.EMAIL_HOST_USER, [to])

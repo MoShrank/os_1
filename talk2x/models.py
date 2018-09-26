@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from .validators import validate_code_mail
 from django.utils.text import slugify
+from datetime import date
+
 
 # Create your models here.
 
@@ -108,6 +110,11 @@ class FutureLunch(models.Model):
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, blank = True)
     date = models.DateField()
     is_active = models.BooleanField(default = True)
+
+    def save(self, *args, **kwargs):
+        if self.date < date.today():
+            raise ValueError('date is in the past')
+        super(FutureLunch, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.user.first_name + ' ' + str(self.date)
