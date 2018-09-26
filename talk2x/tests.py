@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .models import *
 from .send_email import *
+from .tasks import *
 
 # Create your tests here.
 
@@ -21,5 +22,4 @@ def test_():
 
     for n in range(250):
 
-        send_email('confirm registration', 'welf.tenx@gmail.com', { 'name' : 'welf', 'link' : 'talk2.com' })
-        print(n)
+        re = send_email_test.delay()

@@ -1,4 +1,4 @@
-from celery import shared_task
+from celery import shared_task, task
 from .send_email import send_email
 from .matching import match_user
 from .models import Lunch, FutureLunch
@@ -12,6 +12,11 @@ def send_emails(lunch):
     send_email('lunch', receiver[0].email, { 'partner' : receiver[1], 'restaurant' : lunch.restaurant })
 
     send_email('lunch', receiver[1].email, { 'partner' : receiver[0], 'restaurant' : lunch.restaurant })
+
+
+@shared_task
+def send_email_test():
+    send_email('lunch', 'welf.tenx@gmail.com', { 'partner' : 'hi', 'restaurant' : 'test' })
 
 
 @shared_task()
