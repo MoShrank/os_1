@@ -29,7 +29,7 @@ def create_matches():
         send_email.delay('lunch', receiver[1].email, { 'partner' : receiver[0], 'restaurant' : l.restaurant })
 
 
-@shared_task(name='create_matches')
+@shared_task(name='delete_future_lunch')
 def delete_future_lunch():
 
     FutureLunch.objects.filter(date=date.today()).delete()
