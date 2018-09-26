@@ -7,13 +7,13 @@ from .get_message import get_message
 from django.conf import settings
 
 
-@shared_task()
+@shared_task(name='send_email')
 def send_email(subject, to, context):
 
     send_mail(subject, get_message(subject, context), settings.EMAIL_HOST_USER, [to])
 
 
-@shared_task()
+@shared_task(name='create_matches')
 def create_matches():
 
     match_user()
@@ -29,7 +29,7 @@ def create_matches():
         send_email.delay('lunch', receiver[1].email, { 'partner' : receiver[0], 'restaurant' : l.restaurant })
 
 
-@shared_task()
+@shared_task(name='create_matches')
 def delete_future_lunch():
 
     FutureLunch.objects.filter(date=date.today()).delete()
