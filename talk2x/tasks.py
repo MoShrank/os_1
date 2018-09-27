@@ -24,9 +24,9 @@ def create_matches(date):
 
         receiver = l.user.all()
 
-        send_email.delay('lunch', receiver[0].email, { 'partner' : receiver[1], 'restaurant' : l.restaurant })
+        send_email_task.delay('lunch', receiver[0].email, { 'partner' : receiver[1], 'restaurant' : l.restaurant })
 
-        send_email.delay('lunch', receiver[1].email, { 'partner' : receiver[0], 'restaurant' : l.restaurant })
+        send_email_task.delay('lunch', receiver[1].email, { 'partner' : receiver[0], 'restaurant' : l.restaurant })
 
 
 @shared_task()
@@ -44,6 +44,6 @@ def feedback():
 
         receiver = l.user.all()
 
-        send_email.delay('lunch feedback', receiver[0].email, { 'user' : receiver[0], 'link' : 'talk2x.com' })
+        send_email_task.delay('lunch feedback', receiver[0].email, { 'user' : receiver[0], 'link' : 'talk2x.com' })
 
-        send_email.delay('lunch feedback', receiver[1].email, { 'user' : receiver[1], 'link' : 'talk2x.com' })
+        send_email_task.delay('lunch feedback', receiver[1].email, { 'user' : receiver[1], 'link' : 'talk2x.com' })
