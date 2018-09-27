@@ -62,7 +62,7 @@ class Signup(CreateView):
 
         link = get_current_site(self.request).domain + reverse('activate', kwargs={'pk' : str(user.pk), 'token' : str(account_activation_token.make_token(user))})
 
-        send_email.delay('confirm registration', email, { 'name' : user.first_name, 'link' : link })
+        send_email_task.delay('confirm registration', email, { 'name' : user.first_name, 'link' : link })
 
         return super().form_valid(form)
 
@@ -97,7 +97,7 @@ class CreateFutureLunch(CreateView):
 
         form.instance.user = self.request.user
         if self.request.user.subscribe_to_email:
-            send_email.delay('confirm lunch', self.request.user.email, { 'user' : self.request.user, 'date' : form.instance.date })
+            send_email_task.delay('confirm lunch', self.request.user.email, { 'user' : self.request.user, 'date' : form.instance.date })
         return super().form_valid(form)
 
 
