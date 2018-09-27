@@ -22,7 +22,7 @@ def confirm_registration(context):
 
 def confirmation_lunch(context):
 
-    email = get_template('emails/confirmation_lunch')
+    email = get_template('emails/confirmation_lunch.txt')
 
     return email.render(context)
 

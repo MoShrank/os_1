@@ -14,6 +14,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(redirect_authenticated_user=True)),
     path('logout/', auth_views.LogoutView.as_view()),
     path('signup/', Signup.as_view()),
+    path('activate', views.activate_page, name='activate_page'),
     path('activate/<int:pk>/<str:token>', views.activate, name='activate'),
 
     path('accounts/', include('django.contrib.auth.urls')),

@@ -16,24 +16,21 @@ from .tasks import send_email
 from django.contrib.sites.shortcuts import get_current_site
 from .tokens import account_activation_token
 
-# Create your views here.
-
 
 profile_decorator = [ login_required, users_profile ]
 
+# Create your views here.
 
+
+@login_required
 def home(request):
 
-    if request.user.is_authenticated:
+    fl = FutureLunch.objects.filter(user=request.user)
+    pl = Lunch.objects.filter(user=request.user)
 
-        fl = FutureLunch.objects.filter(user=request.user)
-        pl = Lunch.objects.filter(user=request.user)
+    context = { 'FutureLunch' : fl, 'PastLunch' : pl }
 
-        context = { 'FutureLunch' : fl, 'PastLunch' : pl }
-
-        return render(request, 'home.html', context)
-
-    return HttpResponseRedirect(reverse('login'))
+    return render(request, 'home.html', context)
 
 
 def index(request):
@@ -47,7 +44,7 @@ def contact(request):
 class Signup(CreateView):
     form_class = SignUpForm
     template_name = 'registration/signup.html'
-    success_url = '/registration/activate_email'
+    success_url = '/activate'
 
     def get(self, request):
         if request.user.is_authenticated:
@@ -81,7 +78,7 @@ def activate(request, pk, token):
         user.save()
 
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(reverse('home'))
     else:
         return HttpResponse('Activation link is invalid!')
 
@@ -97,8 +94,10 @@ class CreateFutureLunch(CreateView):
         return reverse('lunch')
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
 
+        form.instance.user = self.request.user
+        if request.user.subscribe_to_email:
+            send_email.delay('confirm lunch', self.request.user.email, { 'user' : self.request.user, 'date' : form.instance.date })
         return super().form_valid(form)
 
 
@@ -120,6 +119,10 @@ class Profile(DetailView):
     query_pk_and_slug  = True
     pk_url_kwarg = 'user_id'
     context_object_name = 'user'
+
+
+def activate_page(request):
+    return render(request, 'registration/activate_email.html')
 
 
 @login_required

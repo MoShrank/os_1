@@ -1,10 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from .validators import validate_code_mail
+from .validators import *
 from django.utils.text import slugify
 from datetime import date
-
 
 # Create your models here.
 
@@ -94,7 +93,7 @@ class Restaurant(models.Model):
 
 class Lunch(models.Model):
     date = models.DateField()
-    restaurant = models.ForeignKey(Restaurant, on_delete = models.SET_NULL, null = True, blank = True)
+    restaurant = models.ForeignKey(Restaurant, on_delete = models.CASCADE, null = True, blank = True)
     user = models.ManyToManyField(User)
 
     def __str__(self):
@@ -107,14 +106,10 @@ class Lunch(models.Model):
             return self.restaurant.name + ' ' + ret_str
 
 class FutureLunch(models.Model):
-    user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, blank = True)
-    date = models.DateField()
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    date = models.DateField(validators=[validate_lunch_date])
     is_active = models.BooleanField(default = True)
 
-    def save(self, *args, **kwargs):
-        if self.date < date.today():
-            raise ValueError('date is in the past')
-        super(FutureLunch, self).save(*args, **kwargs)
-
     def __str__(self):
-        return self.user.first_name + ' ' + str(self.date)
+
+        return self.user.email + ' ' + str(self.date)
