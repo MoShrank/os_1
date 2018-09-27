@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 from .models import FutureLunch, User, Lunch
 from .decorators import *
 
-from .tasks import send_email
+from .tasks import send_email_task
 
 from django.contrib.sites.shortcuts import get_current_site
 from .tokens import account_activation_token
@@ -96,7 +96,7 @@ class CreateFutureLunch(CreateView):
     def form_valid(self, form):
 
         form.instance.user = self.request.user
-        if request.user.subscribe_to_email:
+        if self.request.user.subscribe_to_email:
             send_email.delay('confirm lunch', self.request.user.email, { 'user' : self.request.user, 'date' : form.instance.date })
         return super().form_valid(form)
 

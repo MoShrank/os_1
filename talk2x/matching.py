@@ -91,5 +91,6 @@ def match_user():
                 lunch.save()
 
         except Exception as e:
+            pass
 
             return 0

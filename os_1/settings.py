@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 from celery.schedules import crontab
+from datetime import date
 #import djcelery
 #djcelery.setup_loader()
 
@@ -164,7 +165,8 @@ CELERYBEAT_SCHEDULE = {
 
     'match_user': {
         'task': 'talk2x.tasks.create_matches',
-        'schedule' : crontab(hour=12, minute=0)
+        'schedule' : crontab(hour=12, minute=0),
+        'args' : [date.today()]
     },
 
     'delete_future_lunches': {
@@ -172,6 +174,10 @@ CELERYBEAT_SCHEDULE = {
         'schedule' : crontab(hour=13, minute=0)
     },
 
+    'send_feedback': {
+        'task' : 'talk2x.tasks.feedback',
+        'schedule' : crontab(hour=15, minute=0)
+    },
 
 
 }
