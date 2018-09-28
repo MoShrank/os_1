@@ -38,7 +38,7 @@ def delete_future_lunch():
 @shared_task()
 def feedback():
 
-    lunches = Lunch.objects.filter(date=date.today)
+    lunches = Lunch.objects.filter(date=date.today())
 
     for l in lunches:
 

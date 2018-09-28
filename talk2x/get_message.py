@@ -30,7 +30,7 @@ def confirmation_lunch(context):
 def get_message(subject, context):
 
     switch_messages = { 'confirm registration' : confirm_registration,
-                        'lunch feedback:' : lunch_feedback,
+                        'lunch feedback' : lunch_feedback,
                         'lunch' : lunch,
                         'confirm lunch' : confirmation_lunch,
                         }

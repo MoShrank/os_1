@@ -6,7 +6,7 @@ It won’t take more than 2 minutes but will help us to grow and to make platfor
 
 {{ link }}
 
-Book new talk talk2x.com/profile/{{ user.name }}-{{ user.id }}
+Book new talk talk2x.com/profile/{{ user.slug }}-{{ user.id }}
 
 Should you have any questions, feel free to contact the team:
 
