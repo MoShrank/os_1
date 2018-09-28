@@ -14,11 +14,11 @@ def send_email_task(subject, to, context):
 
 
 @shared_task()
-def create_matches(date):
+def create_matches(lunch_date):
 
     match_user()
 
-    lunches = Lunch.objects.filter(date=date)
+    lunches = Lunch.objects.filter(date=lunch_date)
 
     for l in lunches:
 
