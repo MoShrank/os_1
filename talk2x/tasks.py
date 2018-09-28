@@ -16,7 +16,7 @@ def send_email_task(subject, to, context):
 @shared_task()
 def create_matches(lunch_date):
 
-    match_user()
+    match_user(lunch_date)
 
     lunches = Lunch.objects.filter(date=lunch_date)
 

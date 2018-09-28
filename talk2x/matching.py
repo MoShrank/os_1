@@ -26,15 +26,15 @@ def get_random_user_list(queryset):
     return user_list
 
 #matches two (or three) users and a restaurant and creates Lunch entry in database
-def match_user():
+def match_user(lunch_date):
 
     #get all values
     third_user = ''
 
     restaurant_list = get_random_restaurant_list(Restaurant.objects.all())
 
-    #only gets FutureLunches from today and where is_active is true
-    user_list = get_random_user_list(FutureLunch.objects.filter(date=date.today()).filter(is_active=True))
+    #only gets FutureLunches from lunch_date and where is_active is true
+    user_list = get_random_user_list(FutureLunch.objects.filter(date=lunch_date).filter(is_active=True))
 
     restaurant_length = len(restaurant_list)
     user_length = len(user_list)
@@ -52,7 +52,7 @@ def match_user():
     #match user and restaurants and create lunch entry
     for index in range(user_length):
 
-        lunch = Lunch(date=date.today())
+        lunch = Lunch(date=lunch_date)
         lunch.save()
 
         lunch.user.add(User.objects.get(email=user_list[0]))
@@ -74,8 +74,8 @@ def match_user():
     if not third_user == '':
 
         try:
-            staff = User.objects.filter(is_staff=True).get(availabilty=date.today().strftime("%A").upper())
-            lunch = Lunch(date=date.today())
+            staff = User.objects.filter(is_staff=True).get(availabilty=lunch_date.strftime("%A").upper())
+            lunch = Lunch(date=lunch_date)
             lunch.save()
 
             lunch.user.add(User.objects.get(email=third_user))
