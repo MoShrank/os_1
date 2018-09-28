@@ -19,5 +19,5 @@ def validate_lunch_date(date):
         raise ValidationError('date is in the past')
     elif (date - date.today()).days > 14:
         raise ValidationError('too far in the future')
-    #elif date == date.today() and (datetime.now().time().hour) > 12:
-    #    raise ValidationError('too late')
+    elif date == date.today() and (datetime.now().time().hour) > 12:
+        raise ValidationError('too late')
