@@ -1,0 +1,41 @@
+ body {
+   background-image: url("../../static/img/background.jpg");
+   background-color: #cccccc;
+}
+
+.card{
+    width: 50%;
+    border-radius: 8px;
+    background-color: #fff;
+    margin: 22% auto;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.login{
+  padding: 32px 16px 16px 16px;
+  text-align: center;
+}
+
+.field{
+
+}
+
+
+
+.label_tag{}
+
+#cta-login {
+  background-color: #57D084;
+  border-radius: 32px;
+  border: 0px;
+  padding: 8px 24px;
+  color: #fff;
+  font: 15px/1.5 montserrat;
+  font-weight: bold;
+  margin: 24px;
+}
+
+
+.signuplist{
+  list-style: none;
+}

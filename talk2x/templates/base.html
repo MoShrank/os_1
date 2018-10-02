@@ -1,6 +1,4 @@
 {% load static %}
-
-
 <!doctype html>
 <html>
   <head>
@@ -20,17 +18,21 @@
         <meta name="theme-color" content="#ffffff">
 
     <!-- STYLING -->
-    <link rel="stylesheet"
-         href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900">
-    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lunch.css' %}">
+    <link rel="stylesheet" href="{% static 'css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'css/default.date.css' %}">
 
     {% block style %}
-
     {% endblock %}
-
     <!-- JS -->
-    <script>
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/js.js' %}"></script>
+    <script src="{% static 'js/picker.js'%}"></script>
+    <script src="{% static 'js/picker.date.js' %}"></script>
+    <script>$(document).ready(pickadate());</script>
+
   </head>
   <body>
 
@@ -38,91 +40,20 @@
     <header>
       <div class="headerCon">
         <div id="branding">
-          <a href="/"><img id="logo" src="../static/img/logo.png" alt="logo"></a>
+          <a href="/"><img id="logo" src="{% static 'img/logo.png' %}" alt="logo"></a>
         </div>
-        <nav>
-          <ul>
-            <li class="current"><a href="/">Home</a></li>
-            <li><a href="/">Communities</a></li>
-            <li><a href="{% url 'lunch' %}">Talk</a></li>
-          </ul>
-        </nav>
+          {% block nav%}
+          {% endblock %}
       </div>
     </header>
 
-    <!-- STATEMENT -->
-    <section id="statement">
-      <div class="container">
-        <div class="stateCon">
-          <p>We believe in meaningful conversations between people like you.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- BOXES & ICONS -->
-    <section id="boxes">
-      <div class="container">
-        <div class="box">
-          <img src="../static/img/01screen.png" alt="">
-          <div class="boxCon">
-              <p>Replace screen time with people time.</p>
-          </div>
-        </div>
-        <div class="box">
-          <img src="../static/img/02hands.png" alt="">
-          <div class="boxCon">
-              <p>Meet the people you didn't know you care about.</p>
-          </div>
-        </div>
-        <div class="box">
-          <img src="../static/img/03university.png" alt="">
-          <div class="boxCon">
-            <p>Arriving at new places is easier when there is someone to talk to.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="boxes">
-      <div class="container">
-        <div class="box">
-          <img src="../static/img/04sun.png" alt="">
-          <div class="boxCon">
-            <p>Meaningful conversations increase levels of happiness.</p>
-          </div>
-        </div>
-        <div class="box">
-          <img src="../static/img/05unicorn.png" alt="">
-          <div class="boxCon">
-            <p>World-changing ideas begin with meaningful conversations.</p>
-          </div>
-        </div>
-        <div class="box">
-          <img src="../static/img/06globe.png" alt="">
-          <div class="boxCon">
-            <p>Room for openness, vulnerability and understanding.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LIGHT TEXT -->
-    <section id="lighttext">
-      <div class="container">
-
-        <div class="textCon">
-          <p>Talk about what keeps you up at night
-            and about what get’s you out of bed in
-            the morning. Share the things you feel,
-            the struggles you face and the stuff you
-            fear. Explore what you have in common
-            and discover how you can connect.</p>
-        </div>
-
-      </div>
-    </section>
 
     {% block content %}
     {% endblock %}
 
+<!-- footer -->
+    <footer class="footlinks">
+      Made with love in Berlin. | <a href="/about"> About </a> | <a href="/contact"> Contact </a> | <a href="tc.html">T&C</a>
+    </footer>
   </body>
 </html>

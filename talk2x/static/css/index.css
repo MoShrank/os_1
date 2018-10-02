@@ -1,0 +1,161 @@
+header{
+  z-index: 1000;
+}
+
+.meta-con{
+  width: 100%;
+}
+
+.placeholder{
+  color: #333;
+  border: 3px solid #fff;
+  width: 100%;
+}
+
+#cta-login a{
+  background-color: #57D084;
+  border-radius: 32px;
+  padding: 8px 16px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.background{
+  text-align: center;
+  color: white;
+}
+
+.background img {
+  width: 100%;
+  margin: 0;
+}
+
+.cta-talk {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cta-talk a{
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+  background-color: #57D084;
+  border-radius: 32px;
+  padding: 16px 32px;
+}
+
+.mac{
+  margin-top: 100px;
+  float:left;
+  }
+
+.mac img{
+  width: 500px;}
+
+.tom {width: 30%;
+  margin: auto;}
+.tom img {width: 500px;}
+
+.ind-con p{
+  color: #fff;
+  font-size: 32px;
+  text-decoration: none;
+  text-align: right;
+  background-color: #57D084;
+}
+
+.ind-con1{position: absolute;
+  max-width: 600px;
+  margin-top: 200px;
+  left: 25%;
+  z-index: -1;}
+
+.ind-con1 p{
+  padding: 0 32px 0 150px;
+  border: 2px solid #fff;
+}
+
+.ind-con2{
+  position: absolute;
+  top: 1400px;
+  max-width: 600px;
+  left: 60%;
+  }
+
+.ind-con2 p{padding: 0 100px 0 0;}
+
+.ind-con3{position: absolute;
+  top: ;
+  max-width: 800px;
+  float: left;
+  text-align: left;
+  }
+.ind-con3 p{
+  padding: 0 100px 0 200px;
+}
+
+.burger{
+  float: right;
+}
+
+.burger img{
+    width: 360px;
+}
+
+.center{
+  width: 50%;
+  margin: 30% auto 15% auto;
+  display: block;
+  border-radius: 24px;
+}
+
+
+#nav-profile {
+    margin-top: -8px;
+    margin-right: 5px;
+    margin: -6px 5px 0px 16px;
+    float: left;
+    background: url(example.jpg) 50% 50% no-repeat; /* 50% 50% centers image in div */
+    background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+    width: 34px;
+    height: 34px;
+    border-radius: 25px;
+}
+.dropdown {
+    position: relative;
+    display: flex;}
+/* Style The Dropdown Button */
+.dropbtn {
+    background-color: #fff;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50px;}
+/* The container <div> - needed to position the dropdown content */
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1002;
+    right: 0;
+    top:38px;}
+/* Links inside the dropdown */
+.dropdown-content a {
+  white-space: normal;
+    color: black;
+    padding: 16px 24px;
+    text-decoration: none;
+    display: block;}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;}
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #fff;}

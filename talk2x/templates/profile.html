@@ -1,18 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
 
+
+
+{% block nav %}
+  <nav>
+    <ul>
+      <li id="cta-login"><a href="/home">home</a></li>
+      <li id="cta-login"><a href="/lunch">create lunch</a></li>
+      <div class="dropdown">
+        <button class="dropbtn">
+        <img id="nav-profile" src="/uploads/{{user.picture}}" alt="Your Face"></button>
+        <div class="dropdown-content">
+          <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+    </ul>
+  </nav>
+{% endblock %}
 
 {% block content %}
-
-<div class="login">
-
-
-    <div> {{ user.first_name }} </div>
-    <br>
-    {{ user.last_name }}
+<div class="container">
+  <div class="card">
+    <div> {{ user.first_name }} {{ user.last_name }}</div>
     <br>
     {{ user.meaning_of_life }}
     <br>
-
-    <img src="/uploads/{{user.picture}}" alt="">
+    <img id="profilepic" src="/uploads/{{user.picture}}" alt="">
+<br>
+    <a href="{% url 'profile_edit' request.user.slug request.user.id %}">Edit Profile</a>
+  </div>
+</div>
 
 {% endblock %}

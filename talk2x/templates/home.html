@@ -1,40 +1,83 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+
+
+{% block nav %}
+<nav>
+  <ul>
+    <li id="cta-login"><a href="/lunch">create lunch</a></li>
+    <div class="dropdown">
+      <button class="dropbtn">
+      <img id="nav-profile" src="/uploads/{{user.picture}}" alt="Your Face"></button>
+      <div class="dropdown-content">
+        <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+  </ul>
+</nav>
+{% endblock %}
+
+
 
 {% block content %}
+<div class="container">
+  <div class="card">
+    <h1>Future Lunches</h1>
 
 
 
-  {% for pl in PastLunch %}
+        {% for futurelunch in FutureLunch %}
+<div class="scrolling-wrapper">
+        <div class="lunchcard">
+          {{ futurelunch.date }}
+          {{ futurelunch.user.email }}
+        </div>
+        </div>
+        {% endfor %}
 
-    {{pl.user}}
+  </div>
+</div>
 
-  {% endfor %}
-
-
-
-
-
+<div class="container">
+  <div class="card">
+    <h1>Future Lunches</h1>
 
 
-    <!-- HOW IT WORKS -->
-    <section id="tutorial">
-      <div class="container">
-        <p>
-          <span class="numberH">1  </span> choose a day<br>
-          <span class="numberH">2  </span> get an email <br>
-          <span class="numberH">3  </span> have lunch for less with someone like you <br>
-          <span class="numberH">4  </span> share the magic
-        </p>
+        {% for futurelunch in FutureLunch %}
+        <div class="lunchcard">
+          {{ futurelunch.date }}
+          {{ futurelunch.user.email }}
+        </div>
+        {% endfor %}
+
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h1>Past Lunches</h1>
+
+      {% for pastlunch in PastLunch %}
+      <div class="lunchcard">
+        {{ pastlunch.date }}
+        {{ pastlunch.user.email }}
+        {{ pastlunch.user.first_name }}
+        <img src="{{ pastlunch.user.picture }}" alt="">
       </div>
-    </section>
+      {% endfor %}
+      <img src="" alt="">
+    </div>
+  </div>
+</div>
 
-    <!-- OUTRO -->
-    <section id="outro">
-          <a href="/login" class="link-btn">talk to someone</a>
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer class="footlinks">© talk2x 2018 | <a href="imprint.html">Imprint</a></footer>
 
 {% endblock %}

@@ -1,14 +1,47 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block style %}
+
+{% endblock %}
+
+
+{% block nav %}
+  <nav>
+    <ul>
+      <li id="cta-login"><a href="/home">home</a></li>
+      <div class="dropdown">
+        <button class="dropbtn">
+        <img id="nav-profile" src="{% static 'img/welf.jpg' %}" alt="Your Face"></button>
+        <div class="dropdown-content">
+          <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+    </ul>
+  </nav>
+{% endblock %}
 
 {% block content %}
 
-    <form method="post">
+<div class="container">
+  <div class="card">
+    <div class="setlunch">
+      <form method="post">
 
-      {% csrf_token %}
-      {{ form.as_p }}
+        {% csrf_token %}
 
-      <button type="submit">Set Lunch!</button>
-    </form>
+        <p>Date: <input input="text" id="datepicker" class="datepicker" readonly></p>
+
+        <button type="submit">Set Lunch!</button>
+
+
+
+
+
+      </form>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
