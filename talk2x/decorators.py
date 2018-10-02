@@ -1,4 +1,4 @@
-from .models import FutureLunch
+from .models import FutureLunch, User
 from django.core.exceptions import PermissionDenied
 
 
@@ -20,6 +20,26 @@ def users_profile(function):
         id = kwargs['user_id']
 
         if id == request.user.id:
+            return function(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+    try:
+        wrap.__name__ = function.__name__
+    except Exception as e:
+            pass
+    try:
+        wrap.__doc__ = function.__doc__
+    except Exception as e:
+            pass
+    return wrap
+
+
+def profile_complete(function):
+    def wrap(request, *args, **kwargs):
+        id = request.user.id
+        u = User.objects.get(id=id)
+
+        if u.first_name and u.last_name and u.meaning_of_life and u.picture:
             return function(request, *args, **kwargs)
         else:
             raise PermissionDenied

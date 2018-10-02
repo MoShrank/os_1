@@ -52,7 +52,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-    picture = models.ImageField(upload_to='', blank=True, null=True)
+    picture = models.ImageField(upload_to='users/', blank=True, null=True)
     meaning_of_life = models.CharField(max_length=100)
 
     #only for is_staff
@@ -71,13 +71,16 @@ class User(AbstractUser):
     slug =  models.SlugField(max_length = 30)
 
     def save(self, *args, **kwargs):
-        if self.id is None:
+        if self.first_name is not None:
             self.slug = slugify(self.first_name)
-            if not self.slug:
-                self.slug = 'name'
+        else:
+            self.slug = self.email
         super(User, self).save(*args, **kwargs)
 
     objects = UserManager()
+
+    def __str__(self):
+        return self.email
 
     #code taken from https://www.fomfus.com/articles/how-to-use-email-as-username-for-django-authentication-removing-the-username
 
@@ -87,6 +90,7 @@ class Restaurant(models.Model):
     street = models.CharField(max_length=20)
     no = models.PositiveSmallIntegerField()
     email = models.EmailField()
+    picture = models.ImageField(upload_to='restaurants/', blank=True, null=True)
 
     def __str__(self):
         return self.name

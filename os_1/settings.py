@@ -152,9 +152,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 AUTH_USER_MODEL = 'talk2x.User'
 
-LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/home'
+LOGIN_URL = '/home'
 LOGOUT_REDIRECT_URL = '/'
+
+DAYS = [1, 2, 3, 4, 5]
 
 CELERY_BROKER_URL = 'amqp://'
 CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
@@ -165,18 +167,18 @@ CELERYBEAT_SCHEDULE = {
 
     'match_user': {
         'task': 'talk2x.tasks.create_matches',
-        'schedule' : crontab(hour=12, minute=0),
+        'schedule' : crontab(hour=12, minute=0, day_of_week=DAYS),
         'args' : [date.today()]
     },
 
     'delete_future_lunches': {
         'task': 'talk2x.tasks.delete_future_lunch',
-        'schedule' : crontab(hour=13, minute=0)
+        'schedule' : crontab(hour=13, minute=0, day_of_week=DAYS)
     },
 
     'send_feedback': {
         'task' : 'talk2x.tasks.feedback',
-        'schedule' : crontab(hour=15, minute=0)
+        'schedule' : crontab(hour=15, minute=0, day_of_week=DAYS)
     },
 
 
