@@ -19,10 +19,13 @@ urlpatterns = [
     path('activate_email', views.activation_email, name='activation_email'),
 
 
-    path('password_reset', auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html'), name='password_reset'),
-    #path('password_reset/confirm', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm')
+    path('password_reset', auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html', success_url='password_reset/done'), name='password_reset'),
+    path('password_reset/done', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done_.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm_', success_url='reset/done'), name='password_reset_confirm'),
+    path('reset/done', auth_views.PasswordResetComplete.as_view(), name='password_reset_complete'),
 
-    path('accounts/', include('django.contrib.auth.urls')),
+
+    #path('accounts/', include('django.contrib.auth.urls')),
 
     path('profile/<slug:slug>-<int:user_id>/', Profile.as_view(), name='profile'),
     path('profile/<slug:slug>-<int:user_id>/edit/', EditProfile.as_view(), name='profile_edit'),
@@ -30,8 +33,8 @@ urlpatterns = [
     path('profile/<slug:slug>-<int:user_id>/unsubscribe/', views.unsubscribe, name='unsubscribe'),
     path('lunch/', CreateFutureLunch.as_view(), name='lunch'),
     path('lunch/<int:lunch_id>/cancel/', views.cancel_lunch, name='cancel_lunch'),
-    path('contact/', views.contact, name='contact'),
-
+    path('about/', views.about, name='about'),
+    path('tc/', views.tc, name='tc'),
 
     #path('social/', include('social_django.urls', namespace='social'))
 ]

@@ -18,6 +18,7 @@ from .tokens import account_activation_token
 
 from django.shortcuts import get_object_or_404
 
+from django.contrib.auth import views as auth_views
 
 profile_decorator = [ login_required, users_profile ]
 lunch_decorator = [ login_required, profile_complete ]
@@ -40,8 +41,12 @@ def index(request):
     return render(request, 'index.html')
 
 
-def contact(request):
-    return render(request, 'contact.html')
+def about(request):
+    return render(request, 'about.html')
+
+
+def tc(request):
+    return render(request, 'tc.html')
 
 
 class Signup(CreateView):
@@ -108,14 +113,6 @@ def activation_email(request):
 
         return HttpResponseRedirect(reverse('activate_page'))
 
-'''
-class ProfileUpdate(UpdateView):
-    model = User
-    form_class = ProfileForm
-    template_name = 'registration/update.html'
-    success_url = '/home'
-    pk_url_kwarg = 'pk'
-'''
 
 @method_decorator(lunch_decorator, name='dispatch')
 class CreateFutureLunch(CreateView):
@@ -182,3 +179,10 @@ def subscribe(request, slug, user_id):
     user.save()
 
     return HttpResponseRedirect(reverse('profile', kwargs={'slug' : slug, 'user_id' : user.id}))
+
+
+#class ResetRedirect(auth_views.PasswordResetConfirmView):
+#    pass
+    #def get(self, request):
+
+    #    return HttpResponseRedirect('/')

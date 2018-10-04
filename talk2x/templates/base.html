@@ -31,7 +31,7 @@
     <script src="{% static 'js/js.js' %}"></script>
     <script src="{% static 'js/picker.js'%}"></script>
     <script src="{% static 'js/picker.date.js' %}"></script>
-    <script>$(document).ready(pickadate());</script>
+    <script>$('.datepicker').pickadate()</script>
 
   </head>
   <body>
@@ -42,7 +42,7 @@
         <div id="branding">
           <a href="/"><img id="logo" src="{% static 'img/logo.png' %}" alt="logo"></a>
         </div>
-          {% block nav%}
+          {% block nav %}
           {% endblock %}
       </div>
     </header>
