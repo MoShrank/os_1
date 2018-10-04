@@ -20,6 +20,8 @@ from django.shortcuts import get_object_or_404
 
 from django.contrib.auth import views as auth_views
 
+from datetime import date
+
 profile_decorator = [ login_required, users_profile ]
 lunch_decorator = [ login_required, profile_complete ]
 
@@ -29,10 +31,18 @@ lunch_decorator = [ login_required, profile_complete ]
 @login_required
 def home(request):
 
-    fl = FutureLunch.objects.filter(user=request.user)
-    todaysLunch = Lunch.objects.get(date=date.today())
-    pl = Lunch.objects.filter(user=request.user).exclude(todaysLunch)
+    todaysLunch = None
 
+    fl = FutureLunch.objects.filter(user=request.user)
+
+    try:
+        todaysLunch = Lunch.objects.get(date=date.today())
+    except Exception as e:
+        pass
+    pl = Lunch.objects.filter(user=request.user)
+
+    if todaysLunch is not None:
+        pl = pl.exclude(id=todasLunch.id)
 
 
     context = { 'FutureLunch' : fl, 'PastLunch' : pl, 'todaysLunch' : todaysLunch }
