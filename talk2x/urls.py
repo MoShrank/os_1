@@ -19,10 +19,10 @@ urlpatterns = [
     path('activate_email', views.activation_email, name='activation_email'),
 
 
-    path('password_reset', auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html', success_url='password_reset/done'), name='password_reset'),
+    path('password_reset', auth_views.PasswordResetView.as_view(template_name='registration/password_reset_.html', success_url='password_reset/done'), name='password_reset'),
     path('password_reset/done', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done_.html'), name='password_reset_done'),
-    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm_', success_url='reset/done'), name='password_reset_confirm'),
-    path('reset/done', auth_views.PasswordResetComplete.as_view(), name='password_reset_complete'),
+    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm_.html', success_url='reset/done'), name='password_reset_confirm'),
+    path('reset/done', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete_.html'), name='password_reset_complete'),
 
 
     #path('accounts/', include('django.contrib.auth.urls')),

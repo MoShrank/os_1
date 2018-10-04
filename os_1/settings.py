@@ -185,10 +185,16 @@ CELERYBEAT_SCHEDULE = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
+EMAIL_HOST_USER = 'moritzeich70@gmail.com'
+EMAIL_HOST_PASSWORD = 'fade.toastbrot'
+DEFAULT_FROM_EMAIL = 'moritzeich70@gmail.com'
+SERVER_EMAIL = 'moritzeich70@gmail.com'
+'''
 EMAIL_HOST_USER = 'hi@talk2x.com'
 EMAIL_HOST_PASSWORD = 'Talk0396!'
 DEFAULT_FROM_EMAIL = 'hi@talk2x.com'
 SERVER_EMAIL = 'hi@talk2x.com'
+'''
