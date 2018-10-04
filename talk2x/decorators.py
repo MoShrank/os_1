@@ -1,5 +1,6 @@
 from .models import FutureLunch, User
 from django.core.exceptions import PermissionDenied
+from django.http import HttpResponseRedirect
 
 
 def user_is_lunch_author(function):
@@ -42,7 +43,7 @@ def profile_complete(function):
         if u.first_name and u.last_name and u.meaning_of_life and u.picture:
             return function(request, *args, **kwargs)
         else:
-            raise PermissionDenied
+            return HttpResponseRedirect('profile/' + request.user.slug + '-' + id)
     try:
         wrap.__name__ = function.__name__
     except Exception as e:
