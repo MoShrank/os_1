@@ -30,9 +30,12 @@ lunch_decorator = [ login_required, profile_complete ]
 def home(request):
 
     fl = FutureLunch.objects.filter(user=request.user)
-    pl = Lunch.objects.filter(user=request.user)
+    todaysLunch = Lunch.objects.get(date=date.today())
+    pl = Lunch.objects.filter(user=request.user).exclude(todaysLunch)
 
-    context = { 'FutureLunch' : fl, 'PastLunch' : pl }
+
+
+    context = { 'FutureLunch' : fl, 'PastLunch' : pl, 'todaysLunch' : todaysLunch }
 
     return render(request, 'home.html', context)
 
