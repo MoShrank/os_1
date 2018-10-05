@@ -1,8 +1,12 @@
+html, body{
+  height: 100%
+}
+
 .container{
   overflow: auto;
-  height: 100%;
-  background-color: #999;
-  margin-top: 128px;
+
+  background-color: #fff;
+
 }
 
 
@@ -10,16 +14,18 @@
 .div50l{
   width: 50%;
   float: left;
-  border: 1px #000 solid;
+  border: 0px #000 solid;
+  text-align: center;
+  margin-top: 64px;
 }
-.div50l{
-  width: 300px;
-    border: 25px solid green;
-    padding: 25px;
-    margin: 25px;
+
+.div50l h1{
+  margin-top: 100px;
+
 }
 
 .div50r{
+  margin-top: 64px;
   width: 50%;
   float: right;
 }
@@ -27,30 +33,71 @@
   vertical-align: middle;
 }
 
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
 
-#profilepic {width: 200px;}
+.box {
+  position: relative;
+  width: 50%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #F1F9FF;
+}
+
+.box:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: #000;
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 
 
-  /* Boxes */
-.boxCon{max-width: 280px; margin: auto; overflow: hidden;}
 
-#Boxes{
-  margin-top: 20px;}
+
 
 #boxes .box{float:left;
   text-align: center;
-  width: 30%;
-  margin-top: 20px;}
+  width: 192px;}
 
-#boxes .box img{
-  width: 90px;
+.box img{
+  width: 100%;
   height: auto;}
 
-#boxes .box p{
-  font-size: 24px;
-  color: #4A4A4A;
-  line-height: 29px;}
 
+  .text img{
+   width: 16px;
+  }
 
 /* Profile DROPDOWN */
 

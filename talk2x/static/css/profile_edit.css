@@ -7,9 +7,18 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
   padding: 100px;
+  border-radius: 12px;
 }
 
 #profilepic {width: 200px;}
+
+.cta-edit a{
+  background-color: #57D084;
+  border-radius: 32px;
+  padding: 8px 16px;
+  color: #fff;
+  font-weight: bold;
+}
 
 /* Profile DROPDOWN */
 
@@ -52,7 +61,8 @@
     color: black;
     padding: 16px 24px;
     text-decoration: none;
-    display: block;}
+    display: block;
+    }
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #f1f1f1}
 /* Show the dropdown menu on hover */

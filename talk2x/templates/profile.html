@@ -25,15 +25,21 @@
 
 {% block content %}
 <div class="container">
+
   <div class="card">
+    <h1>Your Profile</h1>
     <div> {{ user.first_name }} {{ user.last_name }}</div>
     <br>
     {{ user.meaning_of_life }}
     <br>
+    <br>
     <img id="profilepic" src="/uploads/{{user.picture}}" alt="">
-<br>
-    <a href="{% url 'profile_edit' request.user.slug request.user.id %}">Edit Profile</a>
-  </div>
+<br><br>
+
+      <div class="cta-edit"><a href="{% url 'profile_edit' request.user.slug request.user.id %}">Edit Profile</a></div>
+
+    </div>
+    </div>
 </div>
 
 {% endblock %}

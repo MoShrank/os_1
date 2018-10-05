@@ -1,3 +1,7 @@
+body{
+  background-color: #fff;
+}
+
 .container{
   width: 80%;
   margin: 10% auto;
@@ -10,10 +14,13 @@
 }
 
 .lunchcard{
-  border-radius: 8px;
+  border-radius: 12px;
   width: 256px;
   height: 128px;
-  border: 1px solid grey;
+  border: 1px solid #fff;
+  margin: 32px 0px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
 }
 
 .cardleft{
@@ -27,6 +34,10 @@
 
 .lunchcard img{
   width: 100%;
+}
+
+.lunchtext{
+  margin: 8px;
 }
 /*SCROLLING*/
 

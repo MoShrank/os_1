@@ -67,6 +67,7 @@ class User(AbstractUser):
 
     availabilty = models.CharField(max_length=10, choices=DAY_CHOICES, blank=True, null=True)
     subscribe_to_email = models.BooleanField(default = True)
+    accepted_tc = models.BooleanField(default = False)
 
     slug =  models.SlugField(max_length = 30)
 

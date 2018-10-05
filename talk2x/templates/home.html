@@ -30,7 +30,7 @@
 {% block content %}
 <div class="container">
   <div class="card">
-    <h1>Future Lunches</h1>
+    <h1>Todays Lunch</h1>
 
 
 
@@ -68,9 +68,12 @@
 
       {% for pastlunch in PastLunch %}
       <div class="lunchcard">
-        {{ pastlunch.date }}
-        {{ pastlunch.user.email }}
-        {{ pastlunch.user.first_name }}
+        <div class="lunchtext">
+          {{ pastlunch.date }}
+          {{ pastlunch.user.email }}
+          {{ pastlunch.user.first_name }}
+        </div>
+
         <img src="{{ pastlunch.user.picture }}" alt="">
       </div>
       {% endfor %}

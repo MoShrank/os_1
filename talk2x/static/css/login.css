@@ -34,3 +34,7 @@
   font-weight: bold;
   margin: 24px;
 }
+
+button:focus{
+  outline: none;
+}

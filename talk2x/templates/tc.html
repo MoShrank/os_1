@@ -1,8 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
 
-
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block nav %}
+  <nav>
+    <ul>
+      {% if request.user.is_authenticated %}
+      <li ><a href="/home">Home</a></li>
+      <li ><a href="/lunch">create lunch</a></li>
+      <div class="dropdown">
+        <button class="dropbtn">
+        <img id="nav-profile" src="{% static 'img/welf.jpg' %}" alt="Your Face"></button>
+        <div class="dropdown-content">
+          <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+      {% else %}
+      <li ><a href="/login">Login</a></li>
+      <li id="cta-login"><a href="/signup">Sign Up</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endblock %}
 
 {% block content %}
+<div class="container">
+
 
 <h1>Terms and Conditions ("Terms")</h1>
 <p>Last updated: October 01, 2018</p>
@@ -32,5 +58,5 @@
 <h2>Contact Us</h2>
 <p>If you have any questions about these Terms, please contact us.</p>
 
-
+</div>
 {% endblock %}

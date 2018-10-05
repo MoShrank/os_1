@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+
+
+{% block nav %}
+  <nav>
+    <ul>
+      {% if request.user.is_authenticated %}
+      <li ><a href="/home">Home</a></li>
+      <li ><a href="/lunch">create lunch</a></li>
+      <div class="dropdown">
+        <button class="dropbtn">
+        <img id="nav-profile" src="{% static 'img/welf.jpg' %}" alt="Your Face"></button>
+        <div class="dropdown-content">
+          <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+      {% else %}
+      <li ><a href="/login">Login</a></li>
+      <li id="cta-login"><a href="/signup">Sign Up</a></li>
+      {% endif %}
+
+    </ul>
+  </nav>
+{% endblock %}
+
+
+{% block content %}
+<div class="background">
+  <img  src="{% static 'img/background.jpg' %}" alt="">
+  <div class="cta-talk">
+    {% if request.user.is_authenticated %}
+    <a href="/lunch">talk and eat with someone</a>
+    {% else %}
+    <a href="/signup">talk and eat with someone</a>
+    {% endif %}
+
+  </div>
+</div>
+
+<div class="container">
+
+
+<div class="ind-con">
+
+
+    <div class="mac">
+      <img src="{% static 'img/mac.png' %}" alt="">
+    </div>
+    <div class="ind-con1">
+
+      <p>Select a day of the week <br>
+      to have lunch with <br>
+      someone.</p>
+    </div>
+    <div class="placeholder">
+
+    </div>
+  </div>
+</div>
+
+<div class="ind-con">
+
+  <div class="ind-con2">
+    <p>Receive further information 1 hour before.</p>
+  </div>
+  <div class="tom">
+    <img src="{% static 'img/tom.png' %}" alt="">
+  </div>
+  <div class="ind-con2">
+    <p>Get 10% discount.</p>
+  </div>
+  <div class="ind-con3">
+    <p>Go to lunch and meet someone <br> you didn't know you care about.</p>
+  </div>
+  <div class="burger">
+    <img src="{% static 'img/burger.png' %}" alt="">
+  </div>
+
+
+    <video class="center" controls>
+    <source src="{% static 'img/video.mp4' %}" type="video/mp4">
+
+
+</div>
+
+{% endblock %}

@@ -9,7 +9,10 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['email', 'password1', 'password2']
+        fields = ['email', 'password1', 'password2', 'accepted_tc']
+        labels = {
+            'accepted_tc' : 'accept terms and conditions'
+        }
 
 
 class ActivationForm(forms.Form):
@@ -21,7 +24,7 @@ class EditProfile(ModelForm):
 
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'meaning_of_life', 'picture']
+        fields = ['email', 'first_name', 'last_name', 'meaning_of_life', 'picture', 'subscribe_to_email']
 
 
 class FutureLunchForm(ModelForm):
