@@ -43,7 +43,7 @@ def profile_complete(function):
         if u.first_name and u.last_name and u.meaning_of_life and u.picture:
             return function(request, *args, **kwargs)
         else:
-            return HttpResponseRedirect('profile/' + request.user.slug + '-' + id)
+            return HttpResponseRedirect('/profile/' + request.user.slug + '-' + str(id))
     try:
         wrap.__name__ = function.__name__
     except Exception as e:
