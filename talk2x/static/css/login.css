@@ -1,28 +1,9 @@
- body {
-   background-image: url("../../static/img/background.jpg");
-   background-color: #cccccc;
+html {
+  background: url(../../static/img/backgroundblur.png) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
 }
-
-.card{
-    width: 50%;
-    border-radius: 8px;
-    background-color: #fff;
-    margin: 22% auto;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
-
-.login{
-  padding: 32px 16px 16px 16px;
-  text-align: center;
-}
-
-.field{
-
-}
-
-
-
-.label_tag{}
 
 #cta-login {
   background-color: #57D084;
@@ -34,6 +15,22 @@
   font-weight: bold;
   margin: 24px;
 }
+
+
+.card{
+    width: 50%;
+    border-radius: 8px;
+    background-color: #fff;
+    margin: 22% auto;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);}
+
+.login{
+  padding: 32px 16px 16px 16px;
+  text-align: center;}
+
+.label_tag{}
+
+
 
 button:focus{
   outline: none;

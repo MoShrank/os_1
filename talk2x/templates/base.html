@@ -4,17 +4,19 @@
   <head>
     <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="FAND-QMRNlwz195SQGaRCzpAJHUqh3l3MO5mEO60g7I" />
-    <title> talk2x | Hello World </title>
+    {% block title %}
+    {% endblock %}
+
 
     <!--FAVICON-->
-      <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../../static/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../../static/favicon/favicon-16x16.png">
-        <link rel="manifest" href="../../static/favicon/site.webmanifest">
-        <link rel="mask-icon" href="../../static/favicon/safari-pinned-tab.svg" color="#57d084">
-        <link rel="shortcut icon" href="../../static/favicon/favicon.ico">
+      <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+        <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#57d084">
+        <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
         <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="msapplication-config" content="./favicon/browserconfig.xml">
+        <meta name="msapplication-config" content="{% static 'favicon/browserconfig.xml' %}">
         <meta name="theme-color" content="#ffffff">
 
     <!-- STYLING -->
@@ -41,6 +43,13 @@
       <div class="headerCon">
         <div id="branding">
           <a href="/"><img id="logo" src="{% static 'img/logo.png' %}" alt="logo"></a>
+          <div class="mediaprof">
+
+              <a href="/profile/{{request.user.slug}}-{{request.user.id}}">
+                <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="Your Face">
+              </a>
+          
+          </div>
         </div>
           {% block nav %}
           {% endblock %}
@@ -53,7 +62,7 @@
 
 <!-- footer -->
     <footer class="footlinks">
-      Made with love in Berlin — hi@talk2x.com — <a href="/about"> about </a> — <a href="/tc">t&c</a>
+      Made with love in Berlin — <a href="mailto:hi@talk2x.com?Subject=Lets%20talk" target="_top">hi@talk2x.com</a> — <a href="/about"> about </a> — <a href="/tc">t&c</a>
     </footer>
   </body>
 </html>

@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+<title>Edit Profile</title>
+{% endblock %}
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/profile_edit.css' %}">
 {% endblock %}
@@ -7,10 +10,10 @@
   <nav>
     <ul>
       <li id="cta-login"><a href="/home">home</a></li>
-      <li id="cta-login"><a href="/lunch">create lunch</a></li>
+      <li id="cta-login"><a href="/lunch">new lunch</a></li>
       <div class="dropdown">
         <button class="dropbtn">
-        <img id="nav-profile" src="/uploads/{{user.picture}}" alt="Your Face"></button>
+        <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="Your Face"></button>
         <div class="dropdown-content">
           <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
           <a href="/logout">Logout</a>
@@ -24,14 +27,18 @@
 <div class="container">
   <div class="card">
 
+      <h1>Edit your profile</h1>
+      <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="Update" />
+      </form>
 
-  <h1>Edit your profile</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Update" />
-    </form>
-    </div>
+
+
+
+
+  </div>
 </div>
 
 

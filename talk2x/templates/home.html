@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
-
+{% block title %}
+<title> talk2x | Home </title>
+{% endblock %}
 
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
@@ -12,15 +15,18 @@
 {% block nav %}
 <nav>
   <ul>
-    <li id="cta-login"><a href="/lunch">create lunch</a></li>
+    <li ><a href="/home">Home</a></li>
+    <li ><a href="/lunch">new lunch</a></li>
     <div class="dropdown">
       <button class="dropbtn">
-      <img id="nav-profile" src="/uploads/{{user.picture}}" alt="Your Face"></button>
+      <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="Your Face">
+      </button>
       <div class="dropdown-content">
         <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
         <a href="/logout">Logout</a>
       </div>
     </div>
+
   </ul>
 </nav>
 {% endblock %}
@@ -34,14 +40,20 @@
 
 
 
-        {% for futurelunch in FutureLunch %}
+        {% if todaysLunch %}
 <div class="scrolling-wrapper">
         <div class="lunchcard">
-          {{ futurelunch.date }}
-          {{ futurelunch.user.email }}
+          {{ todaysLunch.date }}
+
+          {% for user in todaysLunch.user.all %}
+
+          {{ user.first_name }}
+
+          {% endfor %}
+
         </div>
         </div>
-        {% endfor %}
+        {% endif %}
 
   </div>
 </div>
@@ -55,6 +67,13 @@
         <div class="lunchcard">
           {{ futurelunch.date }}
           {{ futurelunch.user.email }}
+
+          {% for user in futurelunch.user.all %}
+
+          {{ user.first_name }}
+
+          {% endfor %}
+
         </div>
         {% endfor %}
 
@@ -70,8 +89,11 @@
       <div class="lunchcard">
         <div class="lunchtext">
           {{ pastlunch.date }}
-          {{ pastlunch.user.email }}
-          {{ pastlunch.user.first_name }}
+          {% for user in pastlunch.user.all %}
+
+          {{ user.first_name }}
+
+          {% endfor %}
         </div>
 
         <img src="{{ pastlunch.user.picture }}" alt="">

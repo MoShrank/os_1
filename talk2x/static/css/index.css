@@ -5,7 +5,9 @@ header{
   overflow: auto;
 }
 
-
+.containertc{
+  overflow: auto;
+}
 
 html, body{width: 100%;}
 .placeholder{
@@ -65,6 +67,7 @@ html, body{width: 100%;}
   font-size: 20px;
   color: #333;
   line-height: 25px;}
+
 .center{
   width: 80%;
   margin: 10% auto 15% auto;
@@ -119,3 +122,118 @@ html, body{width: 100%;}
     display: block;}
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #fff;}
+
+
+
+
+
+
+
+
+/* RESPONSIVENESS */
+
+/*Media Queries*/
+
+
+
+
+@media(max-width:1340px){
+.container{
+  width: 100%;
+  margin: 0;
+}
+#boxes .box{
+  float:none;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  margin-top: 50px;}
+}
+
+@media(max-width:768px){
+  #boxes .box{float:none;
+    text-align: center;
+    width: 50%;
+    padding: 10px;
+    margin:auto;
+  margin-top: 20px;}
+  .cta-talk a{
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: #57D084;
+    border-radius: 64px;
+    padding: 8px 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: all 0.3s ease-in-out;
+    display: block;}
+  .cta-talk {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .container{
+    width: 100%;
+    margin: 0;
+  }
+  .container{
+    width: 100%;
+    margin: 0;
+  }
+  #boxes .box{
+    float:none;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    margin-top: 40px;}
+    .center{
+    width: 100%;
+    margin: 10% auto 15% auto;
+    display: block;
+    border-radius: 0px;
+    }
+    .containertc{
+      width: 100%;
+      margin-top: 64px;
+    }
+}
+
+@media(max-width:412px){
+  .cta-talk a{
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: #57D084;
+    border-radius: 64px;
+    padding: 8px 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: all 0.3s ease-in-out;
+    display: block;}
+  .cta-talk {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .container{
+    width: 100%;
+    margin: 0;
+  }
+  #boxes .box{
+    float:none;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    margin-top: 50px;}
+    .center{
+    width: 100%;
+    margin: 10% auto 15% auto;
+    display: block;
+    border-radius: 0px;
+    }
+    .containertc{
+      width: 100%;
+      margin-top: 128px;
+    }
+}

@@ -1,8 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %}
+<title> talk2x | About </title>
+{% endblock %}
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block nav %}
+  <nav>
+    <ul>
+      {% if request.user.is_authenticated %}
+      <li ><a href="/home">Home</a></li>
+      <li ><a href="/lunch">new lunch</a></li>
+      <div class="dropdown">
+        <button class="dropbtn">
+        <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="Your Face"></button>
+        <div class="dropdown-content">
+          <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+      {% else %}
+      <li ><a href="/login">Login</a></li>
+      <li id="cta-login"><a href="/signup">Sign Up</a></li>
+      {% endif %}
+    </ul>
+  </nav>
 {% endblock %}
 
 
@@ -24,28 +48,28 @@
                 <div class="text">
                 <h3>Yoav Weber</h3>
                 <p>Product Manager</p>
-                <a href="https://www.linkedin.com/in/moritz-eich/"><img src="{% static 'img/linkedin.png' %}" alt=""></a>
+                <a href="https://www.linkedin.com/in/yoav-weber-675411147/"><img class="linkedin" src="{% static 'img/linkedin.png' %}" alt=""></a>
                 </div>
               </div>
             </div>
             <div class="box">
-              <img src="{% static 'img/welf.jpg' %}" class="image" alt="">
+              <img src="{% static 'img/tania.jpg' %}" class="image" alt="">
               <div class="overlay">
                 <div class="text">
                 <h3>Tania Boliukh</h3>
                 <p>Product Manager</p>
-                <a href="https://www.linkedin.com/in/moritz-eich/"><img src="{% static 'img/linkedin.png' %}" alt=""></a>
+                <a href="https://www.linkedin.com/in/tania-boliukh-58b78399/"><img class="linkedin" src="{% static 'img/linkedin.png' %}" alt=""></a>
                 </div>
               </div>
 
             </div>
             <div class="box">
-              <img src="{% static 'img/welf.jpg' %}" class="image" alt="">
+              <img src="{% static 'img/mikel.jpg' %}" class="image" alt="">
               <div class="overlay">
                 <div class="text">
                 <h3>Mikel Weber</h3>
                 <p>Interaction Designer</p>
-                <a href="https://www.linkedin.com/in/moritz-eich/"><img src="{% static 'img/linkedin.png' %}" alt=""></a>
+                <a href="https://www.linkedin.com/in/mikel-weber-90b544141/"><img class="linkedin" src="{% static 'img/linkedin.png' %}" alt=""></a>
                 </div>
               </div>
             </div>
@@ -54,22 +78,22 @@
         <section id="boxes">
           <div class="divboxrow">
             <div class="box">
-              <img src="{% static 'img/welf.jpg' %}" class="image" alt="">
+              <img src="{% static 'img/laurens.jpg' %}" class="image" alt="">
               <div class="overlay">
                 <div class="text">
                 <h3>Laurens Saggau</h3>
                 <p>Interaction Designer</p>
-                <a href="https://www.linkedin.com/in/moritz-eich/"><img src="{% static 'img/linkedin.png' %}" alt=""></a>
+                <a href="https://www.linkedin.com/in/laurens-saggau-080a28135/"><img class="linkedin" src="{% static 'img/linkedin.png' %}" alt=""></a>
                 </div>
               </div>
             </div>
             <div class="box">
-              <img src="{% static 'img/welf.jpg' %}" class="image" alt="">
+              <img src="{% static 'img/moritz.jpg' %}" class="image" alt="">
               <div class="overlay">
                 <div class="text">
                 <h3>Moritz Eich</h3>
                 <p>Backend Engineer</p>
-                <a href="https://www.linkedin.com/in/moritz-eich/"><img src="{% static 'img/linkedin.png' %}" alt=""></a>
+                <a href="https://www.linkedin.com/in/moritz-eich/"><img class="linkedin" src="{% static 'img/linkedin.png' %}" alt=""></a>
                 </div>
               </div>
             </div>
@@ -79,7 +103,7 @@
                 <div class="text">
                 <h3>Welf von Hören</h3>
                 <p>Ideation & Frontend</p>
-                <a href="https://www.linkedin.com/in/moritz-eich/"><img src="{% static 'img/linkedin.png' %}" alt=""></a>
+                <a href="https://www.linkedin.com/in/welfvh/"><img class="linkedin" src="{% static 'img/linkedin.png' %}" alt=""></a>
                 </div>
               </div>
             </div>

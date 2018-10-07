@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+<title>talk2x | Profile</title>
+{% endblock %}
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
@@ -10,10 +13,10 @@
   <nav>
     <ul>
       <li id="cta-login"><a href="/home">home</a></li>
-      <li id="cta-login"><a href="/lunch">create lunch</a></li>
+      <li id="cta-login"><a href="/lunch">new lunch</a></li>
       <div class="dropdown">
         <button class="dropbtn">
-        <img id="nav-profile" src="/uploads/{{user.picture}}" alt="Your Face"></button>
+        <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="Your Face"></button>
         <div class="dropdown-content">
           <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
           <a href="/logout">Logout</a>
@@ -30,14 +33,17 @@
     <h1>Your Profile</h1>
     <div> {{ user.first_name }} {{ user.last_name }}</div>
     <br>
-    {{ user.meaning_of_life }}
+    "{{ user.meaning_of_life }}"
     <br>
     <br>
     <img id="profilepic" src="/uploads/{{user.picture}}" alt="">
-<br><br>
-
-      <div class="cta-edit"><a href="{% url 'profile_edit' request.user.slug request.user.id %}">Edit Profile</a></div>
-
+    <br><br>
+      <div class="cta-edit"><a href="{% url 'profile_edit' request.user.slug request.user.id %}">Edit Profile</a>
+      </div>
+      <br>
+      <div id="cta-logout">
+        <a href="/logout">Logout</a>
+      </div>
     </div>
     </div>
 </div>

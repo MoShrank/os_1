@@ -111,3 +111,67 @@ body{
     display: block;}
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #fff;}
+
+@media(max-width:768px){
+  header #branding,
+  header nav,
+  header nav li,
+  #boxes .box {
+    float: none;
+    text-align: center;
+    width: 100%;}
+  .pagetitle{margin-top: 10px;}
+header{padding-bottom: 20px;
+  }
+
+  .dropdown{
+    float: none;
+  }
+  button img {
+    display: none;
+  }
+  .mediaprof{
+    display: flex;
+    float: right;
+    margin-top: 10px;
+  }
+}
+
+
+@media(max-width:412px){
+  header #branding,
+  header nav,
+  header nav li,
+  #boxes .box {
+    float: none;
+    text-align: center;
+    width: 100%;}
+  .pagetitle{margin-top: 10px;}
+header{padding-bottom: 20px;
+  }
+#logo{
+  height:35px;
+  margin-bottom:7px;}
+
+  .dropdown{
+    float: none;
+  }
+  button img {
+    display: none;
+  }
+  .mediaprof{
+    display: flex;
+    float: right;
+    margin-top: 10px;
+  }
+  .container{
+    width: 100%;
+    margin: 30% auto;
+  }
+  .card{
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);
+    padding: 8px 64px;
+    border-radius: 8px;
+  }
+
+}

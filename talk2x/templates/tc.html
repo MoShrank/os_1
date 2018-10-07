@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %}
+<title>Terms and Conditions</title>
+{% endblock %}
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
@@ -9,10 +11,10 @@
     <ul>
       {% if request.user.is_authenticated %}
       <li ><a href="/home">Home</a></li>
-      <li ><a href="/lunch">create lunch</a></li>
+      <li ><a href="/lunch">new lunch</a></li>
       <div class="dropdown">
         <button class="dropbtn">
-        <img id="nav-profile" src="{% static 'img/welf.jpg' %}" alt="Your Face"></button>
+        <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="Your Face"></button>
         <div class="dropdown-content">
           <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
           <a href="/logout">Logout</a>
@@ -27,7 +29,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="containertc">
+<div class="card">
 
 
 <h1>Terms and Conditions ("Terms")</h1>
@@ -57,6 +60,8 @@
 <p>By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.</p>
 <h2>Contact Us</h2>
 <p>If you have any questions about these Terms, please contact us.</p>
+
+</div>
 
 </div>
 {% endblock %}

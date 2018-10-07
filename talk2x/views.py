@@ -36,13 +36,12 @@ def home(request):
     fl = FutureLunch.objects.filter(user=request.user)
 
     try:
-        todaysLunch = Lunch.objects.get(date=date.today())
+        todaysLunch = FutureLunch.objects.get(date=date.today())
     except Exception as e:
         pass
     pl = Lunch.objects.filter(user=request.user)
-
     if todaysLunch is not None:
-        pl = pl.exclude(id=todasLunch.id)
+        fl = pl.exclude(id=todaysLunch.id)
 
 
     context = { 'FutureLunch' : fl, 'PastLunch' : pl, 'todaysLunch' : todaysLunch }

@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}
+<title> talk2x | Welcome </title>
+{% endblock %}
 {% block style %}
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
@@ -8,7 +11,7 @@
     <ul>
       {% if request.user.is_authenticated %}
       <li ><a href="/home">Home</a></li>
-      <li ><a href="/lunch">create lunch</a></li>
+      <li ><a href="/lunch">new lunch</a></li>
       <div class="dropdown">
         <button class="dropbtn">
         <img id="nav-profile" src="uploads/{{request.user.picture}}" alt="Your Face"></button>

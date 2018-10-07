@@ -16,15 +16,13 @@
 
 {% block content %}
 
-<div class="bg-image">
-
-</div>
 
 <div class="container">
+
       <div class="card">
         <div class="login">
         <form method="post">
-<div class="signuplist">
+          <div class="signuplist">
 
 
           {% csrf_token %}
@@ -45,13 +43,18 @@
 
             {% endfor %}
           <br>
+            <p><input type="checkbox" name="t&c" value="t&c"> I accept the<a href="/tc" target="_blank"> Terms & Conditions</a>.</p>
+
+          <br>
+
+
           <button id="cta-login" type="submit">SIGNUP</button>
         </form>
       <p>Already a member? <a href="/login">Log In.</a></p>
       </div>
-
-</div>
+    </div>
   </div>
+</div>
 
 
 {% endblock %}

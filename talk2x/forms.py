@@ -9,10 +9,8 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['email', 'password1', 'password2', 'accepted_tc']
-        labels = {
-            'accepted_tc' : 'accept terms and conditions'
-        }
+        fields = ['email', 'password1', 'password2']
+        
 
 
 class ActivationForm(forms.Form):
