@@ -29,9 +29,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'tceawen-!)jijo-_+oe^&h&2=8-0-q(cx7q%4qz&)^=7#w#*a0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '109.94.110.10', 'talk2x.com', '127.0.0.1', 'www.talk2x.com']
+ALLOWED_HOSTS = ['localhost', '109.94.110.10', 'talk2x.com', '127.0.0.1', 'www.talk2x.com', '10.0.6.197']
 
 
 # Application definition

@@ -83,7 +83,6 @@ class Signup(CreateView):
         link = get_current_site(self.request).domain + reverse('activate', kwargs={'pk' : str(user.pk), 'token' : str(account_activation_token.make_token(user))})
 
         send_email_task.delay('confirm registration', email, { 'name' : user.first_name, 'link' : link })
-
         return super().form_valid(form)
 
 
