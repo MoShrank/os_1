@@ -72,9 +72,10 @@ class Signup(CreateView):
         else:
             return render(request, self.template_name, { 'form' : self.form_class})
 
+
     def form_valid(self, form):
 
-        email = form.cleaned_data.get('email')
+        email = form.cleaned_data['email']
 
         user = form.save(commit=False)
         user.is_active = False
@@ -97,7 +98,7 @@ def activate(request, pk, token):
         user.save()
 
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        return HttpResponseRedirect(reverse('profile_edit', kwargs={'pk' : str(request.user.pk), 'slug' : request.user.slug}))
+        return HttpResponseRedirect(reverse('profile_edit', kwargs={'user_id' : str(request.user.pk), 'slug' : request.user.slug}))
     else:
         return HttpResponse('Activation link is invalid!')
 
@@ -120,9 +121,9 @@ def activation_email(request):
 
         link = get_current_site(request).domain + reverse('activate', kwargs={'pk' : str(pk), 'token' : str(account_activation_token.make_token(user))})
 
-        send_email_task.delay('confirm registration', email, { 'name' : user.first_name, 'link' : link })
+        send_email_task.delay('confirm registration', email, { 'name' : user.slug, 'link' : link })
 
-        return HttpResponseRedirect(reverse('activate_page'))
+        return HttpResponseRedirect('/')
 
 
 @method_decorator(lunch_decorator, name='dispatch')
@@ -131,7 +132,7 @@ class CreateFutureLunch(CreateView):
     template_name = 'lunch.html'
 
     def get_success_url(self):
-        return reverse('lunch')
+        return reverse('home')
 
     def form_valid(self, form):
 
@@ -149,7 +150,7 @@ class EditProfile(UpdateView):
     pk_url_kwarg = 'user_id'
 
     def get_success_url(self):
-        return reverse('profile', kwargs={'slug' : self.object.slug, 'user_id' : self.object.id})
+        return reverse('profile_edit', kwargs={'slug' : self.object.slug, 'user_id' : self.object.id})
 
 
 @method_decorator(profile_decorator, name='dispatch')
@@ -190,10 +191,3 @@ def subscribe(request, slug, user_id):
     user.save()
 
     return HttpResponseRedirect(reverse('profile', kwargs={'slug' : slug, 'user_id' : user.id}))
-
-
-#class ResetRedirect(auth_views.PasswordResetConfirmView):
-#    pass
-    #def get(self, request):
-
-    #    return HttpResponseRedirect('/')

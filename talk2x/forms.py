@@ -4,13 +4,14 @@ from .models import User
 from django.forms import ModelForm
 from .models import FutureLunch
 from .validators import validate_code_mail
+from . import widgets
 
 class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
         fields = ['email', 'password1', 'password2']
-        
+
 
 
 class ActivationForm(forms.Form):
@@ -27,8 +28,14 @@ class EditProfile(ModelForm):
 
 class FutureLunchForm(ModelForm):
 
+    date = forms.CharField(
+        widget = widgets.DateInput,
+
+        )
+
     class Meta:
         model = FutureLunch
         fields = ['date']
+
 
 #code taken from: https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html

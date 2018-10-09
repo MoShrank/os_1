@@ -33,8 +33,8 @@
       <form method="post">
 
         {% csrf_token %}
-
-        <p>Date: <input input="text" id="datepicker" class="datepicker" readonly></p>
+      
+        {{ form.as_p }}
 
         <button type="submit">Set Lunch!</button>
 

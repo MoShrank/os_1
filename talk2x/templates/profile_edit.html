@@ -13,7 +13,7 @@
       <li id="cta-login"><a href="/lunch">new lunch</a></li>
       <div class="dropdown">
         <button class="dropbtn">
-        <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="Your Face"></button>
+        <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="{% static 'img/face.png' %}"></button>
         <div class="dropdown-content">
           <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
           <a href="/logout">Logout</a>
@@ -28,7 +28,7 @@
   <div class="card">
 
       <h1>Edit your profile</h1>
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form.as_p }}
           <input type="submit" value="Update" />

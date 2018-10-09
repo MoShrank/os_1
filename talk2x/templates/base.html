@@ -23,17 +23,10 @@
     <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/lunch.css' %}">
-    <link rel="stylesheet" href="{% static 'css/default.css' %}">
-    <link rel="stylesheet" href="{% static 'css/default.date.css' %}">
 
     {% block style %}
     {% endblock %}
     <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{% static 'js/js.js' %}"></script>
-    <script src="{% static 'js/picker.js'%}"></script>
-    <script src="{% static 'js/picker.date.js' %}"></script>
-
 
   </head>
   <body>
@@ -46,9 +39,9 @@
           <div class="mediaprof">
 
               <a href="/profile/{{request.user.slug}}-{{request.user.id}}">
-                <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="Your Face">
+                <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="{% static 'img/face.png' %}">
               </a>
-          
+
           </div>
         </div>
           {% block nav %}

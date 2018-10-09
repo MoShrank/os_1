@@ -53,7 +53,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     picture = models.ImageField(upload_to='users/', blank=True, null=True)
-    meaning_of_life = models.CharField(max_length=100)
+    meaning_of_life = models.CharField(max_length=100, default='meaning of life')
 
     #only for is_staff
     DAY_CHOICES = (
@@ -72,10 +72,11 @@ class User(AbstractUser):
     slug =  models.SlugField(max_length = 30)
 
     def save(self, *args, **kwargs):
-        if self.first_name is not None:
+        if self.first_name == None:
             self.slug = slugify(self.first_name)
         else:
-            self.slug = self.email
+            slug = self.email.partition('@')[0]
+            self.slug = slugify(slug)
         super(User, self).save(*args, **kwargs)
 
     objects = UserManager()
