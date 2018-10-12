@@ -4,7 +4,7 @@ Thank you for choosing the {{ date }} for your talk 2 CODE student
 
 The system will randomly find you a perfect match and we will notify you 1 hour before.
 
-In case there are any obstacles, feel free to cancel event here <domain/profile/{{ user.first_name }}-{{ user.id }}> in any other case feel free to contact the team:
+In case you want to cancel your lunch, contact one of the team members
 
 Yoaf - Slack @Yoav Weber
 Tania- Slack @Tania,

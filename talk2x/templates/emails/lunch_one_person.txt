@@ -2,7 +2,7 @@ Hola!
 
 You have your lunch today at 1pm at {{ restaurant.name }}, {{ restaurant.street }}{{ restaurant.no }}
 
-Your partner is {{ partner.first_name }}, <foto>
+Your partner is {{ partner.first_name }}
 
 Do you wanna know what is the sense of life according to {{ partner.first_name }}
 

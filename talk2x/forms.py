@@ -23,7 +23,7 @@ class EditProfile(ModelForm):
 
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'meaning_of_life', 'picture', 'subscribe_to_email']
+        fields = ['email', 'first_name', 'last_name', 'meaning_of_life', 'subscribe_to_email']
 
 
 class FutureLunchForm(ModelForm):

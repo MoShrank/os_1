@@ -1,22 +1,22 @@
 from django.test import TestCase
 from .models import *
-from .send_email import *
+#from .send_email import *
 from .tasks import *
 
 # Create your tests here.
 
 
-def test_email():
+def send_test_email():
 
-    partner = User.objects.get(first_name='Moritz')
-    restaurant = Restaurant.objects.get(name='pizza')
+    #partner = User.objects.get(first_name='Moritz')
+    #restaurant = Restaurant.objects.get(name='pizza')
 
     context = {
-        'partner' : partner,
-        'restaurant' : restaurant
+        '1' : 'partner',
+        '2' : 'restaurant'
     }
 
-    return get_message('lunch', context)
+    send_email_task('confirm lunch', 'moritz.eich@code.berlin', context)
 
 def test_():
 

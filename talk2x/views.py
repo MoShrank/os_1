@@ -26,6 +26,7 @@ profile_decorator = [ login_required, users_profile ]
 lunch_decorator = [ login_required, profile_complete ]
 
 # Create your views here.
+#hallo lieber gruß von emily yay
 
 
 @login_required

@@ -40,7 +40,7 @@ def profile_complete(function):
         id = request.user.id
         u = User.objects.get(id=id)
 
-        if u.first_name and u.last_name and u.meaning_of_life and u.picture:
+        if u.first_name and u.last_name and u.meaning_of_life: #and u.picture:
             return function(request, *args, **kwargs)
         else:
             return HttpResponseRedirect('/profile/' + request.user.slug + '-' + str(id))
