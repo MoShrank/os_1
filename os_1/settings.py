@@ -11,11 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-from celery.schedules import crontab
-from datetime import date
-#import djcelery
-#djcelery.setup_loader()
-
+from . import settings_celery
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -153,34 +149,6 @@ AUTH_USER_MODEL = 'talk2x.User'
 LOGIN_REDIRECT_URL = '/home'
 LOGIN_URL = '/home'
 LOGOUT_REDIRECT_URL = '/'
-
-DAYS = [1, 2, 3, 4, 5]
-
-CELERY_BROKER_URL = 'amqp://'
-CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
-#CELERY_RESULT_BACKEND = 'rpc://'
-CELERY_TIMEZONE = 'Europe/Berlin'
-CELERY_IMPORTS = ('talk2x.tasks')
-CELERYBEAT_SCHEDULE = {
-
-    'match_user': {
-        'task': 'talk2x.tasks.create_matches',
-        'schedule' : crontab(hour=12, minute=0, day_of_week=DAYS),
-        'args' : [date.today()]
-    },
-
-    'delete_future_lunches': {
-        'task': 'talk2x.tasks.delete_future_lunch',
-        'schedule' : crontab(hour=13, minute=0, day_of_week=DAYS)
-    },
-
-    'send_feedback': {
-        'task' : 'talk2x.tasks.feedback',
-        'schedule' : crontab(hour=15, minute=0, day_of_week=DAYS)
-    },
-
-
-}
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

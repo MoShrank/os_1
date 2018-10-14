@@ -8,6 +8,7 @@ from . import widgets
 
 class SignUpForm(UserCreationForm):
 
+
     class Meta:
         model = User
         fields = ['email', 'password1', 'password2']

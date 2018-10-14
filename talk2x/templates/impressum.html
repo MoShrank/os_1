@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Impressum</title>
+{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+
+{% block nav %}
+  <nav>
+    <ul>
+      {% if request.user.is_authenticated %}
+      <li ><a href="/home">Home</a></li>
+      <li ><a href="/lunch">new lunch</a></li>
+      <div class="dropdown">
+        <button class="dropbtn">
+        <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="Your Face"></button>
+        <div class="dropdown-content">
+          <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+      {% else %}
+      <li ><a href="/login">Login</a></li>
+      <li id="cta-login"><a href="/signup">Sign Up</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block content %}
+
+<div class="containertc">
+  <div class="card">
+
+    Mailboxde.com GmbH
+    <br>
+    Moritz Eich, ID 87683
+    <br>
+    Äussere Weberstr. 57
+    <br>
+    02763 Zittau
+    <br>
+    Germany
+    <br><br>
+    Contact:
+    <br>
+    E-Mail: moritz.eich@code.berlin
+
+  </div>
+</div>
+{% endblock %}

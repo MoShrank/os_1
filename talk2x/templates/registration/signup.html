@@ -27,24 +27,24 @@
 
           {% csrf_token %}
 
-          {% for field in form.visible_fields %}
+            {% for field in form.visible_fields %}
 
-          <div>{{ field.label_tag }}</div>
+              <div>{{ field.label_tag }}</div>
 
-            {% if field.errors %}
+              {% if field.errors %}
               <ul>
                 {% for error in field.errors %}
                   <li>{{ error }}</li>
                 {% endfor %}
               </ul>
-            {% endif %}
+              {% endif %}
 
-            {{ field }}
+              {{ field }}
 
             {% endfor %}
-          <br>
-            <p><input type="checkbox" name="t&c" value="t&c"> I accept the<a href="/tc" target="_blank"> Terms & Conditions</a>.</p>
 
+            <p><input type="checkbox" name="t&c" value="t&c" id="t&c"> I accept the<a href="/tc" target="_blank"> Terms & Conditions</a>.</p>
+            {{ error }}
           <br>
 
 

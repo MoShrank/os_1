@@ -34,7 +34,7 @@ def home(request):
 
     todaysLunch = None
 
-    fl = FutureLunch.objects.filter(user=request.user)
+    fl = FutureLunch.objects.filter(user__email=request.user)
 
     try:
         todaysLunch = FutureLunch.objects.get(date=date.today())
@@ -43,6 +43,7 @@ def home(request):
     pl = Lunch.objects.filter(user=request.user)
     if todaysLunch is not None:
         fl = pl.exclude(id=todaysLunch.id)
+        pl = pl.exclude(id=todaysLunch.id)
 
 
     context = { 'FutureLunch' : fl, 'PastLunch' : pl, 'todaysLunch' : todaysLunch }
@@ -61,6 +62,8 @@ def about(request):
 def tc(request):
     return render(request, 'tc.html')
 
+def impressum(request):
+    return render (request, 'impressum.html')
 
 class Signup(CreateView):
     form_class = SignUpForm
@@ -75,6 +78,10 @@ class Signup(CreateView):
 
 
     def form_valid(self, form):
+
+        if not 't&c' in self.request.POST:
+            print('hi')
+            return render(self.request, self.template_name, { 'form' : self.form_class, 'error' : 'you need to accept the terms and conditions'})
 
         email = form.cleaned_data['email']
 
@@ -151,7 +158,7 @@ class EditProfile(UpdateView):
     pk_url_kwarg = 'user_id'
 
     def get_success_url(self):
-        return reverse('profile_edit', kwargs={'slug' : self.object.slug, 'user_id' : self.object.id})
+        return reverse('profile', kwargs={'slug' : self.object.slug, 'user_id' : self.object.id})
 
 
 @method_decorator(profile_decorator, name='dispatch')

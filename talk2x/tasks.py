@@ -28,16 +28,6 @@ def create_matches(lunch_date):
 
         send_email_task.delay('lunch', receiver[1].email, { 'partner' : receiver[0], 'restaurant' : l.restaurant })
 
-        '''
-
-        try:
-
-            send_email_task.delay('inform restaurant', l.restaurant.email, {})
-
-        except Exception as e:
-
-            pass
-        '''
 
 @shared_task()
 def delete_future_lunch():
