@@ -1,0 +1,12 @@
+Hey!
+
+As you have probably already heard talk2x is only for CODE students right now.
+
+In order to verify that, please change your email address to your CODE email. Otherwise your profile will be deleted by the end of the week.
+
+You can edit your profile here: talk2x.com/profile/{{user.slug}}-{{user.id}}>/edit/
+
+Thanks for your your understanding!
+
+Kind regards,
+the talk2x team!

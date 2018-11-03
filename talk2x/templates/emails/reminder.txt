@@ -1,0 +1,17 @@
+Hey!
+
+Just a quick reminder for your upcoming lunch this week.
+
+You are going to have lunch on {{date}}.
+
+Remember that you will be matched at 12pm and expected to meet your partner at 1pm at the restaurant.
+
+If you are late please let your partner know on slack.
+
+If you are not able to attend your Lunch please let us know on slack.
+
+@Moritz Eich
+@Tania Boliukh
+@Yoav Weber
+
+Enjoy your Lunch!

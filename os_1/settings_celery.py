@@ -7,6 +7,7 @@ CELERY_BROKER_URL = 'amqp://'
 CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
 CELERY_TIMEZONE = 'Europe/Berlin'
 CELERY_IMPORTS = ('talk2x.tasks')
+
 CELERYBEAT_SCHEDULE = {
 
     'match_user': {
@@ -17,7 +18,7 @@ CELERYBEAT_SCHEDULE = {
 
     'delete_future_lunches': {
         'task': 'talk2x.tasks.delete_future_lunch',
-        'schedule' : crontab(hour=13, minute=0, day_of_week=DAYS)
+        'schedule' : crontab(hour=14, minute=0, day_of_week=DAYS)
     },
 
     'send_feedback': {

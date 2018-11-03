@@ -9,8 +9,8 @@ def validate_code_mail(email):
         return False
     email = email[index:]
 
-    if code != email:
-        raise ValidationError('no valid email')
+#    if code != email:
+#        raise ValidationError('please use your code email address to signup')
 
 
 

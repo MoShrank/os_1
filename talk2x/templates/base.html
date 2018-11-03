@@ -38,8 +38,8 @@
           <a href="/"><img id="logo" src="{% static 'img/logo.png' %}" alt="logo"></a>
           <div class="mediaprof">
 
-              <a href="/profile/{{request.user.slug}}-{{request.user.id}}">
-                <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="{% static 'img/face.png' %}">
+              <a href="/profile/{{request.user.slug}}-{{request.user.id}}" >
+                <img id="nav-profile" src="{% static 'img/face.png' %}" alt="{% static 'img/face.png' %}">
               </a>
 
           </div>

@@ -19,7 +19,7 @@
     <li ><a href="/lunch">new lunch</a></li>
     <div class="dropdown">
       <button class="dropbtn">
-      <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="Your Face">
+      <img id="nav-profile" src="{% static 'img/face.png' %}" alt="Your Face">
       </button>
       <div class="dropdown-content">
         <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
@@ -65,7 +65,7 @@
 
         {% for futurelunch in FutureLunch %}
         <div class="lunchcard">
-          
+
           {{ futurelunch.date }}
           {{ futurelunch.user.email }}
 
@@ -74,7 +74,7 @@
           {{ user.first_name }}
 
           {% endfor %}
-
+          <a href="{% url 'cancel_lunch' futurelunch.id %}">cancel</a>
         </div>
 
         {% endfor %}

@@ -34,7 +34,7 @@
               {% if field.errors %}
               <ul>
                 {% for error in field.errors %}
-                  <li>{{ error }}</li>
+                  <li class='error'>{{ error }}</li>
                 {% endfor %}
               </ul>
               {% endif %}
@@ -44,7 +44,7 @@
             {% endfor %}
 
             <p><input type="checkbox" name="t&c" value="t&c" id="t&c"> I accept the<a href="/tc" target="_blank"> Terms & Conditions</a>.</p>
-            {{ error }}
+            <div class='error'>{{ error }}</div>
           <br>
 
 

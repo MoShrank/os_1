@@ -2,11 +2,13 @@ Hola!
 
 You have your lunch today at 1pm at {{ restaurant.name }}, {{ restaurant.street }}{{ restaurant.no }}
 
-Your partner is {{ partner.first_name }}
+Your partner is {{ partner.first_name }} {{ partner.last_name }}
 
 Do you wanna know what is the sense of life according to {{ partner.first_name }}
 
 {{ partner.meaning_of_life }}
+
+Please contact your partner before the meal to make sure everything works out for both of you! 
 
 Hope you will enjoy your meal!
 

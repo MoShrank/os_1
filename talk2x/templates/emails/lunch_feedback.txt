@@ -4,9 +4,9 @@ talk2x team truly hope you enjoyed your lunch and ready to share your feedback
 
 It won’t take more than 2 minutes but will help us to grow and to make platform better!
 
-{{ link }}
+https://docs.google.com/forms/d/e/1FAIpQLSfFrr0twZnqlB_E6XBcBAhZATii95q-3hrHXj8MCnoG4ZZTdQ/viewform?c=0&w=1
 
-Book new talk talk2x.com/profile/{{ user.slug }}-{{ user.id }}
+Book a new talk talk2x.com/profile/{{ user.slug }}-{{ user.id }}
 
 Should you have any questions, feel free to contact the team:
 

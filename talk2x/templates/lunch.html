@@ -15,7 +15,7 @@
       <li ><a href="/lunch">new lunch</a></li>
       <div class="dropdown">
         <button class="dropbtn">
-        <img id="nav-profile" src="/uploads/{{request.user.picture}}" alt="Your Face"></button>
+        <img id="nav-profile" src="{% static 'img/face.png' %}" alt="Your Face"></button>
         <div class="dropdown-content">
           <a href="/profile/{{request.user.slug}}-{{request.user.id}}">Profile</a>
           <a href="/logout">Logout</a>
@@ -30,11 +30,28 @@
 <div class="container">
   <div class="card">
     <div class="setlunch">
+
+      <h2> You will be notified about your partner and the restaraunt at 12pm the day you scheduled your lunch and exptected to meet him there at 1pm  </h2>
+
       <form method="post">
 
         {% csrf_token %}
-      
-        {{ form.as_p }}
+
+        {% for field in form.visible_fields %}
+
+          <div>{{ field.label_tag }}</div>
+
+          {% if field.errors %}
+          <ul>
+            {% for error in field.errors %}
+              <li class='error'>{{ error }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          {{ field }}
+
+        {% endfor %}
 
         <button type="submit">Set Lunch!</button>
 

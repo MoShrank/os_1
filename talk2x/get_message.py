@@ -26,6 +26,12 @@ def confirmation_lunch(context):
 
     return email.render(context)
 
+def reminder(context):
+
+    email = get_template('emails/reminder_change_email.txt')
+
+    return email.render(context)
+
 #returns email as string related to subject --> right context must be given
 def get_message(subject, context):
 
@@ -33,6 +39,7 @@ def get_message(subject, context):
                         'lunch feedback' : lunch_feedback,
                         'lunch' : lunch,
                         'confirm lunch' : confirmation_lunch,
+                        'reminder' : reminder,
                         }
 
 

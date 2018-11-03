@@ -144,7 +144,11 @@ class CreateFutureLunch(CreateView):
 
     def form_valid(self, form):
 
+        if FutureLunch.objects.filter(user=self.request.user).filter(date=form.cleaned_data['date']):
+            return HttpResponseRedirect(reverse('home'))
+
         form.instance.user = self.request.user
+
         if self.request.user.subscribe_to_email:
             send_email_task.delay('confirm lunch', self.request.user.email, { 'user' : self.request.user, 'date' : form.instance.date })
         return super().form_valid(form)
@@ -180,7 +184,7 @@ def cancel_lunch(request, lunch_id):
 
     FutureLunch.objects.get(id=lunch_id).delete()
 
-    return HttpResponseRedirect(reverse('profile', kwargs={'slug' : request.user.slug, 'user_id' : request.user.id}))
+    return HttpResponseRedirect(reverse('home'))
 
 @login_required
 def unsubscribe(request, slug, user_id):

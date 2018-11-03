@@ -392,3 +392,8 @@ overflow: hidden;}
   min-height:100px;
   text-align: center;}
 }
+
+.error {
+  color: red;
+  font-size: 1.5em;
+}
